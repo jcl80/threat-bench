@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-03-13T19-34-08",
+  "model": "gpt-4o",
+  "prompt": "threat_stage1",
+  "git_commit": "unknown",
+  "data_path": "data/bench_data.jsonl",
+  "baseline_path": "data/baseline.jsonl",
+  "total_analyses": 22,
+  "total_posts": 856,
+  "total_usage": {
+    "prompt_tokens": 324208,
+    "completion_tokens": 127224,
+    "total_tokens": 451432
+  }
+}
