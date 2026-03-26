@@ -124,16 +124,20 @@ class BaselineEvidence(BaseModel):
 
 
 class BaselineStage(BaseModel):
-    confidence: float
-    reasoning: str
-    model: str
-    cost_usd: float
+    model_config = {"extra": "ignore"}
+
+    confidence: float = 0.0
+    reasoning: str = ""
+    model: Optional[str] = None
+    cost_usd: float = 0.0
     evidence: list[BaselineEvidence] = Field(default_factory=list)
     verified: Optional[bool] = None  # stage2 only
 
 
 class BaselineAnalysis(BaseModel):
-    """One line in baseline.jsonl — a confirmed threat from the Go pipeline."""
+    """One line in baseline.jsonl — a production pipeline analysis."""
+    model_config = {"extra": "ignore"}
+
     analysis_id: int
     subreddit: str
     post_snapshot_ids: list[int]

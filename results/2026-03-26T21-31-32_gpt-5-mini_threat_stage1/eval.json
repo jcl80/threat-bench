@@ -1,0 +1,5494 @@
+{
+  "overall": {
+    "total_analyses": 97,
+    "threat_analyses": 74,
+    "non_threat_analyses": 23,
+    "detection": {
+      "detected": 71,
+      "missed": 3,
+      "recall": 0.959
+    },
+    "post_level": {
+      "tp": 71,
+      "fp": 1965,
+      "fn": 3,
+      "precision": 0.035,
+      "recall": 0.959,
+      "f1": 0.067
+    },
+    "flagging": {
+      "model_flagged": 2036,
+      "baseline_flagged": 80,
+      "total_posts": 2555,
+      "model_flag_rate": 0.797,
+      "benign_false_positives": 21
+    },
+    "field_agreement": {
+      "categories_jaccard": 0.904,
+      "confidence_mae": 0.036,
+      "importance_mae": 0.408,
+      "weirdness_mae": 0.38,
+      "geography_country_match": 0.944,
+      "geography_region_match": 0.887
+    },
+    "throughput": {
+      "total_tokens": 1991045,
+      "prompt_tokens": 1069983,
+      "completion_tokens": 921062,
+      "wall_clock_seconds": 9988.8,
+      "completion_tokens_per_sec": 92.2
+    }
+  },
+  "by_tier": {
+    "ambiguous": {
+      "total_analyses": 40,
+      "threat_analyses": 37,
+      "non_threat_analyses": 3,
+      "detection": {
+        "detected": 35,
+        "missed": 2,
+        "recall": 0.946
+      },
+      "post_level": {
+        "tp": 35,
+        "fp": 920,
+        "fn": 2,
+        "precision": 0.037,
+        "recall": 0.946,
+        "f1": 0.071
+      },
+      "flagging": {
+        "model_flagged": 955,
+        "baseline_flagged": 40,
+        "total_posts": 1304,
+        "model_flag_rate": 0.732,
+        "benign_false_positives": 4
+      },
+      "field_agreement": {
+        "categories_jaccard": 0.929,
+        "confidence_mae": 0.038,
+        "importance_mae": 0.343,
+        "weirdness_mae": 0.457,
+        "geography_country_match": 0.971,
+        "geography_region_match": 0.943
+      },
+      "throughput": {
+        "total_tokens": 972942,
+        "prompt_tokens": 508465,
+        "completion_tokens": 464477,
+        "wall_clock_seconds": 5041.5,
+        "completion_tokens_per_sec": 92.1
+      }
+    },
+    "benign": {
+      "total_analyses": 17,
+      "threat_analyses": 0,
+      "non_threat_analyses": 17,
+      "detection": {
+        "detected": 0,
+        "missed": 0,
+        "recall": 0
+      },
+      "post_level": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      "flagging": {
+        "model_flagged": 0,
+        "baseline_flagged": 0,
+        "total_posts": 40,
+        "model_flag_rate": 0.0,
+        "benign_false_positives": 0
+      },
+      "field_agreement": {
+        "categories_jaccard": 0.0,
+        "confidence_mae": null,
+        "importance_mae": null,
+        "weirdness_mae": null,
+        "geography_country_match": 0.0,
+        "geography_region_match": 0.0
+      },
+      "throughput": {
+        "total_tokens": 47133,
+        "prompt_tokens": 35416,
+        "completion_tokens": 11717,
+        "wall_clock_seconds": 156.8,
+        "completion_tokens_per_sec": 74.7
+      }
+    },
+    "threat-dense": {
+      "total_analyses": 40,
+      "threat_analyses": 37,
+      "non_threat_analyses": 3,
+      "detection": {
+        "detected": 36,
+        "missed": 1,
+        "recall": 0.973
+      },
+      "post_level": {
+        "tp": 36,
+        "fp": 1045,
+        "fn": 1,
+        "precision": 0.033,
+        "recall": 0.973,
+        "f1": 0.064
+      },
+      "flagging": {
+        "model_flagged": 1081,
+        "baseline_flagged": 40,
+        "total_posts": 1211,
+        "model_flag_rate": 0.893,
+        "benign_false_positives": 17
+      },
+      "field_agreement": {
+        "categories_jaccard": 0.88,
+        "confidence_mae": 0.033,
+        "importance_mae": 0.472,
+        "weirdness_mae": 0.306,
+        "geography_country_match": 0.917,
+        "geography_region_match": 0.833
+      },
+      "throughput": {
+        "total_tokens": 970970,
+        "prompt_tokens": 526102,
+        "completion_tokens": 444868,
+        "wall_clock_seconds": 4790.5,
+        "completion_tokens_per_sec": 92.9
+      }
+    }
+  },
+  "by_category": {
+    "ai_risk": {
+      "total": 5,
+      "detected": 5,
+      "detection_rate": 1.0
+    },
+    "conflict": {
+      "total": 44,
+      "detected": 43,
+      "detection_rate": 0.977
+    },
+    "economic": {
+      "total": 37,
+      "detected": 35,
+      "detection_rate": 0.946
+    },
+    "health": {
+      "total": 6,
+      "detected": 6,
+      "detection_rate": 1.0
+    },
+    "natural_disaster": {
+      "total": 5,
+      "detected": 5,
+      "detection_rate": 1.0
+    },
+    "political": {
+      "total": 38,
+      "detected": 38,
+      "detection_rate": 1.0
+    }
+  },
+  "per_analysis": [
+    {
+      "analysis_id": 713810,
+      "subreddit": "ukraine",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "political"
+      ],
+      "total_posts": 20,
+      "baseline_flagged": 1,
+      "model_flagged": 14,
+      "detected": true,
+      "tp": 1,
+      "fp": 13,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "political"
+          ],
+          "model": [
+            "political",
+            "conflict"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.85
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 6,
+          "model": [
+            6
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            2
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "UKR",
+          "model": "UKR",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Eastern Europe",
+          "model": "Eastern Europe",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 8705,
+        "completion_tokens": 6567,
+        "total_tokens": 15272,
+        "wall_clock_seconds": 71.414
+      }
+    },
+    {
+      "analysis_id": 714801,
+      "subreddit": "news",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict"
+      ],
+      "total_posts": 17,
+      "baseline_flagged": 1,
+      "model_flagged": 15,
+      "detected": true,
+      "tp": 1,
+      "fp": 14,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict"
+          ],
+          "model": [
+            "conflict"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 8,
+          "model": [
+            8
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 7228,
+        "completion_tokens": 7782,
+        "total_tokens": 15010,
+        "wall_clock_seconds": 83.582
+      }
+    },
+    {
+      "analysis_id": 716411,
+      "subreddit": "collapse",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "NATURAL_DISASTER",
+        "ECONOMIC",
+        "CONFLICT"
+      ],
+      "total_posts": 11,
+      "baseline_flagged": 1,
+      "model_flagged": 8,
+      "detected": true,
+      "tp": 1,
+      "fp": 7,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "NATURAL_DISASTER",
+            "ECONOMIC",
+            "CONFLICT"
+          ],
+          "model": [
+            "natural_disaster",
+            "economic",
+            "political"
+          ],
+          "jaccard": 0.5
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.92
+          ],
+          "mae": 0.020000000000000018
+        },
+        "importance": {
+          "baseline": 8,
+          "model": [
+            7
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 9347,
+        "completion_tokens": 3803,
+        "total_tokens": 13150,
+        "wall_clock_seconds": 40.967
+      }
+    },
+    {
+      "analysis_id": 719119,
+      "subreddit": "Economics",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "ECONOMIC",
+        "POLITICAL"
+      ],
+      "total_posts": 10,
+      "baseline_flagged": 1,
+      "model_flagged": 6,
+      "detected": true,
+      "tp": 1,
+      "fp": 5,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "ECONOMIC",
+            "POLITICAL"
+          ],
+          "model": [
+            "POLITICAL",
+            "ECONOMIC",
+            "NATURAL_DISASTER"
+          ],
+          "jaccard": 0.6666666666666666
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.86
+          ],
+          "mae": 0.010000000000000009
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            2
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "ARG",
+          "model": "ARG",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "South America",
+          "model": "South America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 5551,
+        "completion_tokens": 3360,
+        "total_tokens": 8911,
+        "wall_clock_seconds": 36.459
+      }
+    },
+    {
+      "analysis_id": 719137,
+      "subreddit": "ukraine",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "political",
+        "conflict"
+      ],
+      "total_posts": 27,
+      "baseline_flagged": 1,
+      "model_flagged": 18,
+      "detected": true,
+      "tp": 1,
+      "fp": 17,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "political",
+            "conflict"
+          ],
+          "model": [
+            "conflict",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.88,
+          "model": [
+            0.85
+          ],
+          "mae": 0.030000000000000027
+        },
+        "importance": {
+          "baseline": 6,
+          "model": [
+            6
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            3
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "UKR",
+          "model": "UKR",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Eastern Europe",
+          "model": "Eastern Europe",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 11278,
+        "completion_tokens": 8076,
+        "total_tokens": 19354,
+        "wall_clock_seconds": 94.629
+      }
+    },
+    {
+      "analysis_id": 719165,
+      "subreddit": "collapse",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "NATURAL_DISASTER",
+        "ECONOMIC"
+      ],
+      "total_posts": 11,
+      "baseline_flagged": 1,
+      "model_flagged": 8,
+      "detected": true,
+      "tp": 1,
+      "fp": 7,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "NATURAL_DISASTER",
+            "ECONOMIC"
+          ],
+          "model": [
+            "NATURAL_DISASTER",
+            "POLITICAL",
+            "ECONOMIC"
+          ],
+          "jaccard": 0.6666666666666666
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.93
+          ],
+          "mae": 0.030000000000000027
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            7
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 9347,
+        "completion_tokens": 3730,
+        "total_tokens": 13077,
+        "wall_clock_seconds": 40.309
+      }
+    },
+    {
+      "analysis_id": 719386,
+      "subreddit": "technology",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "political"
+      ],
+      "total_posts": 31,
+      "baseline_flagged": 1,
+      "model_flagged": 23,
+      "detected": true,
+      "tp": 1,
+      "fp": 22,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "political"
+          ],
+          "model": [
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.82,
+          "model": [
+            0.82
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            3
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 12652,
+        "completion_tokens": 10191,
+        "total_tokens": 22843,
+        "wall_clock_seconds": 121.966
+      }
+    },
+    {
+      "analysis_id": 719450,
+      "subreddit": "energy",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "economic"
+      ],
+      "total_posts": 15,
+      "baseline_flagged": 1,
+      "model_flagged": 14,
+      "detected": true,
+      "tp": 1,
+      "fp": 13,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "economic"
+          ],
+          "model": [
+            "conflict",
+            "economic"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.88
+          ],
+          "mae": 0.030000000000000027
+        },
+        "importance": {
+          "baseline": 8,
+          "model": [
+            7
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "SAU",
+          "model": "SAU",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 5452,
+        "completion_tokens": 5054,
+        "total_tokens": 10506,
+        "wall_clock_seconds": 54.272
+      }
+    },
+    {
+      "analysis_id": 719631,
+      "subreddit": "technology",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "POLITICAL"
+      ],
+      "total_posts": 50,
+      "baseline_flagged": 1,
+      "model_flagged": 22,
+      "detected": true,
+      "tp": 1,
+      "fp": 21,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "POLITICAL"
+          ],
+          "model": [
+            "POLITICAL",
+            "AI_RISK"
+          ],
+          "jaccard": 0.5
+        },
+        "confidence": {
+          "baseline": 0.8,
+          "model": [
+            0.75
+          ],
+          "mae": 0.050000000000000044
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            5
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 17371,
+        "completion_tokens": 15553,
+        "total_tokens": 32924,
+        "wall_clock_seconds": 170.193
+      }
+    },
+    {
+      "analysis_id": 719779,
+      "subreddit": "collapse",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "ECONOMIC",
+        "POLITICAL"
+      ],
+      "total_posts": 13,
+      "baseline_flagged": 1,
+      "model_flagged": 11,
+      "detected": true,
+      "tp": 1,
+      "fp": 10,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "ECONOMIC",
+            "POLITICAL"
+          ],
+          "model": [
+            "economic"
+          ],
+          "jaccard": 0.5
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 5,
+          "model": [
+            4
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 8828,
+        "completion_tokens": 4720,
+        "total_tokens": 13548,
+        "wall_clock_seconds": 45.099
+      }
+    },
+    {
+      "analysis_id": 719826,
+      "subreddit": "Economics",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "ECONOMIC",
+        "CONFLICT",
+        "POLITICAL"
+      ],
+      "total_posts": 28,
+      "baseline_flagged": 1,
+      "model_flagged": 23,
+      "detected": true,
+      "tp": 1,
+      "fp": 22,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "ECONOMIC",
+            "CONFLICT",
+            "POLITICAL"
+          ],
+          "model": [
+            "economic",
+            "conflict"
+          ],
+          "jaccard": 0.6666666666666666
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.8
+          ],
+          "mae": 0.04999999999999993
+        },
+        "importance": {
+          "baseline": 6,
+          "model": [
+            6
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            3
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 17373,
+        "completion_tokens": 9991,
+        "total_tokens": 27364,
+        "wall_clock_seconds": 104.854
+      }
+    },
+    {
+      "analysis_id": 719886,
+      "subreddit": "geopolitics",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "economic"
+      ],
+      "total_posts": 18,
+      "baseline_flagged": 1,
+      "model_flagged": 18,
+      "detected": true,
+      "tp": 1,
+      "fp": 17,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "economic"
+          ],
+          "model": [
+            "CONFLICT",
+            "ECONOMIC"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 8,
+          "model": [
+            8
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            2
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 8772,
+        "completion_tokens": 8499,
+        "total_tokens": 17271,
+        "wall_clock_seconds": 96.649
+      }
+    },
+    {
+      "analysis_id": 719888,
+      "subreddit": "ukraine",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict"
+      ],
+      "total_posts": 46,
+      "baseline_flagged": 1,
+      "model_flagged": 41,
+      "detected": true,
+      "tp": 1,
+      "fp": 40,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict"
+          ],
+          "model": [
+            "conflict"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            7
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "UKR",
+          "model": "UKR",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Eastern Europe",
+          "model": "Eastern Europe",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 19671,
+        "completion_tokens": 15559,
+        "total_tokens": 35230,
+        "wall_clock_seconds": 155.64600000000002
+      }
+    },
+    {
+      "analysis_id": 720287,
+      "subreddit": "collapse",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "natural_disaster"
+      ],
+      "total_posts": 11,
+      "baseline_flagged": 1,
+      "model_flagged": 9,
+      "detected": true,
+      "tp": 1,
+      "fp": 8,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "natural_disaster"
+          ],
+          "model": [
+            "NATURAL_DISASTER"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 6,
+          "model": [
+            6
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "",
+          "model": "",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Global",
+          "model": "",
+          "match": false
+        }
+      },
+      "usage": {
+        "prompt_tokens": 7145,
+        "completion_tokens": 4330,
+        "total_tokens": 11475,
+        "wall_clock_seconds": 47.057
+      }
+    },
+    {
+      "analysis_id": 720538,
+      "subreddit": "technology",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "economic"
+      ],
+      "total_posts": 36,
+      "baseline_flagged": 1,
+      "model_flagged": 26,
+      "detected": true,
+      "tp": 1,
+      "fp": 25,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "economic"
+          ],
+          "model": [
+            "economic"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.7
+          ],
+          "mae": 0.20000000000000007
+        },
+        "importance": {
+          "baseline": 3,
+          "model": [
+            2
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 14584,
+        "completion_tokens": 13844,
+        "total_tokens": 28428,
+        "wall_clock_seconds": 145.71699999999998
+      }
+    },
+    {
+      "analysis_id": 720809,
+      "subreddit": "Economics",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "economic"
+      ],
+      "total_posts": 19,
+      "baseline_flagged": 1,
+      "model_flagged": 15,
+      "detected": true,
+      "tp": 1,
+      "fp": 14,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "economic"
+          ],
+          "model": [
+            "conflict",
+            "economic"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 8,
+          "model": [
+            8
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "",
+          "model": "",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 12148,
+        "completion_tokens": 8406,
+        "total_tokens": 20554,
+        "wall_clock_seconds": 97.381
+      }
+    },
+    {
+      "analysis_id": 720967,
+      "subreddit": "energy",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "economic"
+      ],
+      "total_posts": 16,
+      "baseline_flagged": 1,
+      "model_flagged": 13,
+      "detected": true,
+      "tp": 1,
+      "fp": 12,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "economic"
+          ],
+          "model": [
+            "conflict",
+            "economic"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.8
+          ],
+          "mae": 0.04999999999999993
+        },
+        "importance": {
+          "baseline": 5,
+          "model": [
+            4
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "IND",
+          "model": "IND",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "South Asia",
+          "model": "South Asia",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 5823,
+        "completion_tokens": 5699,
+        "total_tokens": 11522,
+        "wall_clock_seconds": 59.292
+      }
+    },
+    {
+      "analysis_id": 720968,
+      "subreddit": "ukraine",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "political"
+      ],
+      "total_posts": 35,
+      "baseline_flagged": 1,
+      "model_flagged": 29,
+      "detected": true,
+      "tp": 1,
+      "fp": 28,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.85
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 6,
+          "model": [
+            7
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            3
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "SAU",
+          "model": "SAU",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 14735,
+        "completion_tokens": 12667,
+        "total_tokens": 27402,
+        "wall_clock_seconds": 140.658
+      }
+    },
+    {
+      "analysis_id": 721014,
+      "subreddit": "geopolitics",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "economic",
+        "political"
+      ],
+      "total_posts": 18,
+      "baseline_flagged": 1,
+      "model_flagged": 16,
+      "detected": true,
+      "tp": 1,
+      "fp": 15,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "economic",
+            "political"
+          ],
+          "model": [
+            "economic",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.86,
+          "model": [
+            0.8
+          ],
+          "mae": 0.05999999999999994
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "",
+          "match": false
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "Global",
+          "match": false
+        }
+      },
+      "usage": {
+        "prompt_tokens": 8759,
+        "completion_tokens": 6844,
+        "total_tokens": 15603,
+        "wall_clock_seconds": 70.009
+      }
+    },
+    {
+      "analysis_id": 721092,
+      "subreddit": "Economics",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "economic"
+      ],
+      "total_posts": 35,
+      "baseline_flagged": 1,
+      "model_flagged": 30,
+      "detected": true,
+      "tp": 1,
+      "fp": 29,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "economic"
+          ],
+          "model": [
+            "economic"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.75,
+          "model": [
+            0.8
+          ],
+          "mae": 0.050000000000000044
+        },
+        "importance": {
+          "baseline": 3,
+          "model": [
+            2
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "CHN",
+          "model": "CHN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Asia",
+          "model": "East Asia",
+          "match": false
+        }
+      },
+      "usage": {
+        "prompt_tokens": 19792,
+        "completion_tokens": 13608,
+        "total_tokens": 33400,
+        "wall_clock_seconds": 135.567
+      }
+    },
+    {
+      "analysis_id": 721672,
+      "subreddit": "collapse",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "economic"
+      ],
+      "total_posts": 9,
+      "baseline_flagged": 1,
+      "model_flagged": 9,
+      "detected": true,
+      "tp": 1,
+      "fp": 8,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "economic"
+          ],
+          "model": [
+            "conflict",
+            "economic"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 8,
+          "model": [
+            8
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 7210,
+        "completion_tokens": 3703,
+        "total_tokens": 10913,
+        "wall_clock_seconds": 44.954
+      }
+    },
+    {
+      "analysis_id": 721770,
+      "subreddit": "collapse",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "economic",
+        "conflict"
+      ],
+      "total_posts": 10,
+      "baseline_flagged": 1,
+      "model_flagged": 8,
+      "detected": true,
+      "tp": 1,
+      "fp": 7,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "economic",
+            "conflict"
+          ],
+          "model": [
+            "economic",
+            "conflict"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.8
+          ],
+          "mae": 0.09999999999999998
+        },
+        "importance": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            2
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "AUS",
+          "model": "AUS",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Oceania",
+          "model": "Oceania",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 8647,
+        "completion_tokens": 4459,
+        "total_tokens": 13106,
+        "wall_clock_seconds": 47.939
+      }
+    },
+    {
+      "analysis_id": 721929,
+      "subreddit": "energy",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "economic"
+      ],
+      "total_posts": 1,
+      "baseline_flagged": 1,
+      "model_flagged": 1,
+      "detected": true,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "economic"
+          ],
+          "model": [
+            "conflict",
+            "economic",
+            "political"
+          ],
+          "jaccard": 0.6666666666666666
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.85
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            6
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "",
+          "model": "",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 1339,
+        "completion_tokens": 1212,
+        "total_tokens": 2551,
+        "wall_clock_seconds": 14.505
+      }
+    },
+    {
+      "analysis_id": 722161,
+      "subreddit": "Economics",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "economic",
+        "political"
+      ],
+      "total_posts": 27,
+      "baseline_flagged": 1,
+      "model_flagged": 26,
+      "detected": true,
+      "tp": 1,
+      "fp": 25,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "economic",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "economic"
+          ],
+          "jaccard": 0.6666666666666666
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.9
+          ],
+          "mae": 0.050000000000000044
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            7
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            2
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 15106,
+        "completion_tokens": 9468,
+        "total_tokens": 24574,
+        "wall_clock_seconds": 96.668
+      }
+    },
+    {
+      "analysis_id": 722234,
+      "subreddit": "geopolitics",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "political"
+      ],
+      "total_posts": 6,
+      "baseline_flagged": 1,
+      "model_flagged": 6,
+      "detected": true,
+      "tp": 1,
+      "fp": 5,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.86,
+          "model": [
+            0.9
+          ],
+          "mae": 0.040000000000000036
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            8
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 4034,
+        "completion_tokens": 2760,
+        "total_tokens": 6794,
+        "wall_clock_seconds": 35.11
+      }
+    },
+    {
+      "analysis_id": 722236,
+      "subreddit": "ukraine",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict"
+      ],
+      "total_posts": 39,
+      "baseline_flagged": 1,
+      "model_flagged": 31,
+      "detected": true,
+      "tp": 1,
+      "fp": 30,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict"
+          ],
+          "model": [
+            "conflict"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.9
+          ],
+          "mae": 0.050000000000000044
+        },
+        "importance": {
+          "baseline": 6,
+          "model": [
+            6
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            2
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "UKR",
+          "model": "UKR",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Eastern Europe",
+          "model": "Eastern Europe",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 14844,
+        "completion_tokens": 12993,
+        "total_tokens": 27837,
+        "wall_clock_seconds": 134.602
+      }
+    },
+    {
+      "analysis_id": 722286,
+      "subreddit": "technology",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "ECONOMIC"
+      ],
+      "total_posts": 50,
+      "baseline_flagged": 1,
+      "model_flagged": 31,
+      "detected": false,
+      "tp": 0,
+      "fp": 31,
+      "fn": 1,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 19132,
+        "completion_tokens": 16681,
+        "total_tokens": 35813,
+        "wall_clock_seconds": 163.204
+      }
+    },
+    {
+      "analysis_id": 722777,
+      "subreddit": "collapse",
+      "tier": "threat-dense",
+      "baseline_status": "false_positive",
+      "baseline_categories": [
+        "natural_disaster"
+      ],
+      "total_posts": 16,
+      "baseline_flagged": 1,
+      "model_flagged": 15,
+      "detected": null,
+      "tp": 0,
+      "fp": 15,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 14608,
+        "completion_tokens": 6436,
+        "total_tokens": 21044,
+        "wall_clock_seconds": 82.437
+      }
+    },
+    {
+      "analysis_id": 723081,
+      "subreddit": "energy",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "economic",
+        "political"
+      ],
+      "total_posts": 7,
+      "baseline_flagged": 1,
+      "model_flagged": 1,
+      "detected": true,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "economic",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "economic",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.95
+          ],
+          "mae": 0.04999999999999993
+        },
+        "importance": {
+          "baseline": 8,
+          "model": [
+            8
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            4
+          ],
+          "mae": 2
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 3772,
+        "completion_tokens": 2151,
+        "total_tokens": 5923,
+        "wall_clock_seconds": 25.253
+      }
+    },
+    {
+      "analysis_id": 723186,
+      "subreddit": "Economics",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "economic",
+        "political"
+      ],
+      "total_posts": 29,
+      "baseline_flagged": 1,
+      "model_flagged": 22,
+      "detected": true,
+      "tp": 1,
+      "fp": 21,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "economic",
+            "political"
+          ],
+          "model": [
+            "economic",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.78
+          ],
+          "mae": 0.06999999999999995
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "SGP",
+          "model": "SGP",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Southeast Asia",
+          "model": "Southeast Asia",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 12458,
+        "completion_tokens": 10364,
+        "total_tokens": 22822,
+        "wall_clock_seconds": 111.303
+      }
+    },
+    {
+      "analysis_id": 723251,
+      "subreddit": "Economics",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "ECONOMIC"
+      ],
+      "total_posts": 17,
+      "baseline_flagged": 1,
+      "model_flagged": 14,
+      "detected": true,
+      "tp": 1,
+      "fp": 13,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "ECONOMIC"
+          ],
+          "model": [
+            "economic"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 9268,
+        "completion_tokens": 6393,
+        "total_tokens": 15661,
+        "wall_clock_seconds": 75.12899999999999
+      }
+    },
+    {
+      "analysis_id": 723299,
+      "subreddit": "technology",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "political"
+      ],
+      "total_posts": 50,
+      "baseline_flagged": 1,
+      "model_flagged": 37,
+      "detected": true,
+      "tp": 1,
+      "fp": 36,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "political"
+          ],
+          "model": [
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 15858,
+        "completion_tokens": 17026,
+        "total_tokens": 32884,
+        "wall_clock_seconds": 182.882
+      }
+    },
+    {
+      "analysis_id": 723446,
+      "subreddit": "ukraine",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "political",
+        "conflict"
+      ],
+      "total_posts": 41,
+      "baseline_flagged": 1,
+      "model_flagged": 34,
+      "detected": true,
+      "tp": 1,
+      "fp": 33,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "political",
+            "conflict"
+          ],
+          "model": [
+            "political",
+            "economic"
+          ],
+          "jaccard": 0.3333333333333333
+        },
+        "confidence": {
+          "baseline": 0.92,
+          "model": [
+            0.92
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 6,
+          "model": [
+            6
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "UKR",
+          "model": "HUN",
+          "match": false
+        },
+        "geography_region": {
+          "baseline": "Eastern Europe",
+          "model": "Europe",
+          "match": false
+        }
+      },
+      "usage": {
+        "prompt_tokens": 17815,
+        "completion_tokens": 14809,
+        "total_tokens": 32624,
+        "wall_clock_seconds": 148.342
+      }
+    },
+    {
+      "analysis_id": 723544,
+      "subreddit": "collapse",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "CONFLICT",
+        "ECONOMIC"
+      ],
+      "total_posts": 8,
+      "baseline_flagged": 1,
+      "model_flagged": 8,
+      "detected": true,
+      "tp": 1,
+      "fp": 7,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "CONFLICT",
+            "ECONOMIC"
+          ],
+          "model": [
+            "conflict",
+            "economic"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.92,
+          "model": [
+            0.85
+          ],
+          "mae": 0.07000000000000006
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            7
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            3
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 5609,
+        "completion_tokens": 3650,
+        "total_tokens": 9259,
+        "wall_clock_seconds": 39.05
+      }
+    },
+    {
+      "analysis_id": 723593,
+      "subreddit": "energy",
+      "tier": "ambiguous",
+      "baseline_status": "needs_review",
+      "baseline_categories": [
+        "economic",
+        "political"
+      ],
+      "total_posts": 11,
+      "baseline_flagged": 1,
+      "model_flagged": 2,
+      "detected": null,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 5164,
+        "completion_tokens": 2338,
+        "total_tokens": 7502,
+        "wall_clock_seconds": 28.247
+      }
+    },
+    {
+      "analysis_id": 723690,
+      "subreddit": "technology",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "AI_RISK"
+      ],
+      "total_posts": 50,
+      "baseline_flagged": 1,
+      "model_flagged": 38,
+      "detected": true,
+      "tp": 1,
+      "fp": 37,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "AI_RISK"
+          ],
+          "model": [
+            "ai_risk"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.75
+          ],
+          "mae": 0.09999999999999998
+        },
+        "importance": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "",
+          "model": "",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "",
+          "model": "",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 17899,
+        "completion_tokens": 16394,
+        "total_tokens": 34293,
+        "wall_clock_seconds": 176.555
+      }
+    },
+    {
+      "analysis_id": 724053,
+      "subreddit": "geopolitics",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "political"
+      ],
+      "total_posts": 13,
+      "baseline_flagged": 1,
+      "model_flagged": 13,
+      "detected": true,
+      "tp": 1,
+      "fp": 12,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.6,
+          "model": [
+            0.75
+          ],
+          "mae": 0.15000000000000002
+        },
+        "importance": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 4,
+          "model": [
+            2
+          ],
+          "mae": 2
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 8131,
+        "completion_tokens": 4950,
+        "total_tokens": 13081,
+        "wall_clock_seconds": 50.773
+      }
+    },
+    {
+      "analysis_id": 724069,
+      "subreddit": "ukraine",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "political"
+      ],
+      "total_posts": 45,
+      "baseline_flagged": 1,
+      "model_flagged": 38,
+      "detected": true,
+      "tp": 1,
+      "fp": 37,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.85
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            7
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "UKR",
+          "model": "UKR",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Eastern Europe",
+          "model": "Eastern Europe",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 21058,
+        "completion_tokens": 15838,
+        "total_tokens": 36896,
+        "wall_clock_seconds": 161.65699999999998
+      }
+    },
+    {
+      "analysis_id": 725388,
+      "subreddit": "askscience",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 1,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1518,
+        "completion_tokens": 320,
+        "total_tokens": 1838,
+        "wall_clock_seconds": 5.99
+      }
+    },
+    {
+      "analysis_id": 732468,
+      "subreddit": "Cooking",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 2,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 2345,
+        "completion_tokens": 693,
+        "total_tokens": 3038,
+        "wall_clock_seconds": 7.97
+      }
+    },
+    {
+      "analysis_id": 733949,
+      "subreddit": "news",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "economic",
+        "political"
+      ],
+      "total_posts": 36,
+      "baseline_flagged": 1,
+      "model_flagged": 34,
+      "detected": true,
+      "tp": 1,
+      "fp": 33,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "economic",
+            "political"
+          ],
+          "model": [
+            "ECONOMIC",
+            "POLITICAL"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.8
+          ],
+          "mae": 0.09999999999999998
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 13373,
+        "completion_tokens": 13995,
+        "total_tokens": 27368,
+        "wall_clock_seconds": 147.807
+      }
+    },
+    {
+      "analysis_id": 736058,
+      "subreddit": "ukraine",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "political"
+      ],
+      "total_posts": 47,
+      "baseline_flagged": 1,
+      "model_flagged": 40,
+      "detected": true,
+      "tp": 1,
+      "fp": 39,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "political"
+          ],
+          "model": [
+            "political",
+            "economic",
+            "conflict"
+          ],
+          "jaccard": 0.3333333333333333
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.85
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 6,
+          "model": [
+            7
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "UKR",
+          "model": "UKR",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Eastern Europe",
+          "model": "Eastern Europe",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 18906,
+        "completion_tokens": 16073,
+        "total_tokens": 34979,
+        "wall_clock_seconds": 175.56999999999996
+      }
+    },
+    {
+      "analysis_id": 736129,
+      "subreddit": "worldnews",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "political",
+        "conflict"
+      ],
+      "total_posts": 72,
+      "baseline_flagged": 1,
+      "model_flagged": 70,
+      "detected": true,
+      "tp": 1,
+      "fp": 69,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "political",
+            "conflict"
+          ],
+          "model": [
+            "political"
+          ],
+          "jaccard": 0.5
+        },
+        "confidence": {
+          "baseline": 0.82,
+          "model": [
+            0.9
+          ],
+          "mae": 0.08000000000000007
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            6
+          ],
+          "mae": 2
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "BRA",
+          "model": "BRA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "South America",
+          "model": "South America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 23917,
+        "completion_tokens": 25418,
+        "total_tokens": 49335,
+        "wall_clock_seconds": 271.393
+      }
+    },
+    {
+      "analysis_id": 736357,
+      "subreddit": "energy",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "health",
+        "political"
+      ],
+      "total_posts": 3,
+      "baseline_flagged": 1,
+      "model_flagged": 3,
+      "detected": true,
+      "tp": 1,
+      "fp": 2,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "health",
+            "political"
+          ],
+          "model": [
+            "health",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.88,
+          "model": [
+            0.9
+          ],
+          "mae": 0.020000000000000018
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 1907,
+        "completion_tokens": 2082,
+        "total_tokens": 3989,
+        "wall_clock_seconds": 23.519
+      }
+    },
+    {
+      "analysis_id": 742445,
+      "subreddit": "technology",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "economic"
+      ],
+      "total_posts": 54,
+      "baseline_flagged": 1,
+      "model_flagged": 32,
+      "detected": true,
+      "tp": 1,
+      "fp": 31,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "economic"
+          ],
+          "model": [
+            "economic"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.82,
+          "model": [
+            0.86
+          ],
+          "mae": 0.040000000000000036
+        },
+        "importance": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 18892,
+        "completion_tokens": 18376,
+        "total_tokens": 37268,
+        "wall_clock_seconds": 193.016
+      }
+    },
+    {
+      "analysis_id": 744103,
+      "subreddit": "woodworking",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 2,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1648,
+        "completion_tokens": 615,
+        "total_tokens": 2263,
+        "wall_clock_seconds": 7.946
+      }
+    },
+    {
+      "analysis_id": 746563,
+      "subreddit": "ukraine",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "political"
+      ],
+      "total_posts": 36,
+      "baseline_flagged": 1,
+      "model_flagged": 32,
+      "detected": true,
+      "tp": 1,
+      "fp": 31,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "political"
+          ],
+          "model": [
+            "conflict"
+          ],
+          "jaccard": 0.5
+        },
+        "confidence": {
+          "baseline": 0.86,
+          "model": [
+            0.87
+          ],
+          "mae": 0.010000000000000009
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            2
+          ],
+          "mae": 2
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "UKR",
+          "model": "UKR",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Eastern Europe",
+          "model": "Eastern Europe",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 15759,
+        "completion_tokens": 12594,
+        "total_tokens": 28353,
+        "wall_clock_seconds": 148.726
+      }
+    },
+    {
+      "analysis_id": 747074,
+      "subreddit": "news",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "AI_RISK",
+        "HEALTH"
+      ],
+      "total_posts": 37,
+      "baseline_flagged": 1,
+      "model_flagged": 35,
+      "detected": true,
+      "tp": 1,
+      "fp": 34,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "AI_RISK",
+            "HEALTH"
+          ],
+          "model": [
+            "HEALTH",
+            "AI_RISK"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.7,
+          "model": [
+            0.78
+          ],
+          "mae": 0.08000000000000007
+        },
+        "importance": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 4,
+          "model": [
+            2
+          ],
+          "mae": 2
+        },
+        "geography_country": {
+          "baseline": "CHN",
+          "model": "CHN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "East Asia",
+          "model": "East Asia",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 13304,
+        "completion_tokens": 14462,
+        "total_tokens": 27766,
+        "wall_clock_seconds": 161.325
+      }
+    },
+    {
+      "analysis_id": 747379,
+      "subreddit": "collapse",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "HEALTH",
+        "ECONOMIC",
+        "CONFLICT"
+      ],
+      "total_posts": 2,
+      "baseline_flagged": 1,
+      "model_flagged": 2,
+      "detected": true,
+      "tp": 1,
+      "fp": 1,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "HEALTH",
+            "ECONOMIC",
+            "CONFLICT"
+          ],
+          "model": [
+            "HEALTH",
+            "ECONOMIC"
+          ],
+          "jaccard": 0.6666666666666666
+        },
+        "confidence": {
+          "baseline": 0.88,
+          "model": [
+            0.82
+          ],
+          "mae": 0.06000000000000005
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            5
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "",
+          "model": "",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Global",
+          "model": "",
+          "match": false
+        }
+      },
+      "usage": {
+        "prompt_tokens": 2967,
+        "completion_tokens": 1483,
+        "total_tokens": 4450,
+        "wall_clock_seconds": 17.368
+      }
+    },
+    {
+      "analysis_id": 754296,
+      "subreddit": "woodworking",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 1,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1448,
+        "completion_tokens": 517,
+        "total_tokens": 1965,
+        "wall_clock_seconds": 7.751
+      }
+    },
+    {
+      "analysis_id": 756322,
+      "subreddit": "gardening",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 3,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1827,
+        "completion_tokens": 760,
+        "total_tokens": 2587,
+        "wall_clock_seconds": 9.129
+      }
+    },
+    {
+      "analysis_id": 758326,
+      "subreddit": "geopolitics",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict"
+      ],
+      "total_posts": 4,
+      "baseline_flagged": 1,
+      "model_flagged": 4,
+      "detected": true,
+      "tp": 1,
+      "fp": 3,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict"
+          ],
+          "model": [
+            "conflict"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 8,
+          "model": [
+            8
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 2739,
+        "completion_tokens": 3238,
+        "total_tokens": 5977,
+        "wall_clock_seconds": 32.03
+      }
+    },
+    {
+      "analysis_id": 760913,
+      "subreddit": "technology",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict"
+      ],
+      "total_posts": 52,
+      "baseline_flagged": 1,
+      "model_flagged": 35,
+      "detected": true,
+      "tp": 1,
+      "fp": 34,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict"
+          ],
+          "model": [
+            "conflict",
+            "economic",
+            "political"
+          ],
+          "jaccard": 0.3333333333333333
+        },
+        "confidence": {
+          "baseline": 0.8,
+          "model": [
+            0.85
+          ],
+          "mae": 0.04999999999999993
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            3
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 19276,
+        "completion_tokens": 18471,
+        "total_tokens": 37747,
+        "wall_clock_seconds": 216.72199999999998
+      }
+    },
+    {
+      "analysis_id": 763627,
+      "subreddit": "ukraine",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict"
+      ],
+      "total_posts": 38,
+      "baseline_flagged": 1,
+      "model_flagged": 33,
+      "detected": true,
+      "tp": 1,
+      "fp": 32,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict"
+          ],
+          "model": [
+            "conflict"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.88
+          ],
+          "mae": 0.030000000000000027
+        },
+        "importance": {
+          "baseline": 5,
+          "model": [
+            6
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            2
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "UKR",
+          "model": "UKR",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Eastern Europe",
+          "model": "Eastern Europe",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 15633,
+        "completion_tokens": 13088,
+        "total_tokens": 28721,
+        "wall_clock_seconds": 141.285
+      }
+    },
+    {
+      "analysis_id": 764269,
+      "subreddit": "worldnews",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "political"
+      ],
+      "total_posts": 65,
+      "baseline_flagged": 1,
+      "model_flagged": 64,
+      "detected": true,
+      "tp": 1,
+      "fp": 63,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            7
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "UKR",
+          "model": "UKR",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Eastern Europe",
+          "model": "Eastern Europe",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 21813,
+        "completion_tokens": 25273,
+        "total_tokens": 47086,
+        "wall_clock_seconds": 281.423
+      }
+    },
+    {
+      "analysis_id": 765229,
+      "subreddit": "collapse",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "health",
+        "economic",
+        "political",
+        "natural_disaster",
+        "ai_risk"
+      ],
+      "total_posts": 1,
+      "baseline_flagged": 1,
+      "model_flagged": 1,
+      "detected": true,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "health",
+            "economic",
+            "political",
+            "natural_disaster",
+            "ai_risk"
+          ],
+          "model": [
+            "conflict",
+            "health",
+            "economic",
+            "natural_disaster",
+            "political",
+            "ai_risk"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.92,
+          "model": [
+            0.92
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 9,
+          "model": [
+            9
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "",
+          "match": false
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Global",
+          "match": false
+        }
+      },
+      "usage": {
+        "prompt_tokens": 7939,
+        "completion_tokens": 1589,
+        "total_tokens": 9528,
+        "wall_clock_seconds": 18.072
+      }
+    },
+    {
+      "analysis_id": 765850,
+      "subreddit": "technology",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "AI_RISK",
+        "POLITICAL"
+      ],
+      "total_posts": 89,
+      "baseline_flagged": 1,
+      "model_flagged": 50,
+      "detected": true,
+      "tp": 1,
+      "fp": 49,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "AI_RISK",
+            "POLITICAL"
+          ],
+          "model": [
+            "AI_RISK",
+            "POLITICAL"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.78,
+          "model": [
+            0.9
+          ],
+          "mae": 0.12
+        },
+        "importance": {
+          "baseline": 5,
+          "model": [
+            6
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            3
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "",
+          "match": false
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "",
+          "match": false
+        }
+      },
+      "usage": {
+        "prompt_tokens": 26601,
+        "completion_tokens": 26188,
+        "total_tokens": 52789,
+        "wall_clock_seconds": 297.35
+      }
+    },
+    {
+      "analysis_id": 767076,
+      "subreddit": "Economics",
+      "tier": "ambiguous",
+      "baseline_status": "needs_review",
+      "baseline_categories": [
+        "economic",
+        "political"
+      ],
+      "total_posts": 1,
+      "baseline_flagged": 1,
+      "model_flagged": 1,
+      "detected": null,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1528,
+        "completion_tokens": 1122,
+        "total_tokens": 2650,
+        "wall_clock_seconds": 16.4
+      }
+    },
+    {
+      "analysis_id": 768071,
+      "subreddit": "gardening",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 2,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1788,
+        "completion_tokens": 821,
+        "total_tokens": 2609,
+        "wall_clock_seconds": 10.177
+      }
+    },
+    {
+      "analysis_id": 771805,
+      "subreddit": "worldnews",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "political",
+        "conflict"
+      ],
+      "total_posts": 100,
+      "baseline_flagged": 1,
+      "model_flagged": 91,
+      "detected": true,
+      "tp": 1,
+      "fp": 90,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "political",
+            "conflict"
+          ],
+          "model": [
+            "conflict",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.7
+          ],
+          "mae": 0.15000000000000002
+        },
+        "importance": {
+          "baseline": 6,
+          "model": [
+            6
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "CUB",
+          "model": "CUB",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Caribbean",
+          "model": "Caribbean",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 34938,
+        "completion_tokens": 35775,
+        "total_tokens": 70713,
+        "wall_clock_seconds": 390.274
+      }
+    },
+    {
+      "analysis_id": 777052,
+      "subreddit": "news",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "political"
+      ],
+      "total_posts": 36,
+      "baseline_flagged": 1,
+      "model_flagged": 35,
+      "detected": true,
+      "tp": 1,
+      "fp": 34,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 8,
+          "model": [
+            7
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 13052,
+        "completion_tokens": 13536,
+        "total_tokens": 26588,
+        "wall_clock_seconds": 147.3
+      }
+    },
+    {
+      "analysis_id": 783213,
+      "subreddit": "askscience",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 1,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1899,
+        "completion_tokens": 581,
+        "total_tokens": 2480,
+        "wall_clock_seconds": 9.084
+      }
+    },
+    {
+      "analysis_id": 783391,
+      "subreddit": "Cooking",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 2,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1820,
+        "completion_tokens": 481,
+        "total_tokens": 2301,
+        "wall_clock_seconds": 6.818
+      }
+    },
+    {
+      "analysis_id": 785454,
+      "subreddit": "worldnews",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "political"
+      ],
+      "total_posts": 100,
+      "baseline_flagged": 1,
+      "model_flagged": 95,
+      "detected": true,
+      "tp": 1,
+      "fp": 94,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.85
+          ],
+          "mae": 0.050000000000000044
+        },
+        "importance": {
+          "baseline": 8,
+          "model": [
+            7
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 32403,
+        "completion_tokens": 35675,
+        "total_tokens": 68078,
+        "wall_clock_seconds": 382.46299999999997
+      }
+    },
+    {
+      "analysis_id": 791371,
+      "subreddit": "Economics",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "economic",
+        "political"
+      ],
+      "total_posts": 5,
+      "baseline_flagged": 1,
+      "model_flagged": 5,
+      "detected": true,
+      "tp": 1,
+      "fp": 4,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "economic",
+            "political"
+          ],
+          "model": [
+            "economic",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.75,
+          "model": [
+            0.82
+          ],
+          "mae": 0.06999999999999995
+        },
+        "importance": {
+          "baseline": 3,
+          "model": [
+            4
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 3926,
+        "completion_tokens": 2946,
+        "total_tokens": 6872,
+        "wall_clock_seconds": 31.18
+      }
+    },
+    {
+      "analysis_id": 791853,
+      "subreddit": "geopolitics",
+      "tier": "threat-dense",
+      "baseline_status": "needs_review",
+      "baseline_categories": [
+        "conflict",
+        "political"
+      ],
+      "total_posts": 2,
+      "baseline_flagged": 1,
+      "model_flagged": 2,
+      "detected": null,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1721,
+        "completion_tokens": 1434,
+        "total_tokens": 3155,
+        "wall_clock_seconds": 15.103
+      }
+    },
+    {
+      "analysis_id": 792174,
+      "subreddit": "worldnews",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "political",
+        "health"
+      ],
+      "total_posts": 100,
+      "baseline_flagged": 1,
+      "model_flagged": 97,
+      "detected": true,
+      "tp": 1,
+      "fp": 96,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "political",
+            "health"
+          ],
+          "model": [
+            "political",
+            "health"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.78,
+          "model": [
+            0.9
+          ],
+          "mae": 0.12
+        },
+        "importance": {
+          "baseline": 3,
+          "model": [
+            4
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "GBR",
+          "model": "GBR",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Western Europe",
+          "model": "Northern Europe",
+          "match": false
+        }
+      },
+      "usage": {
+        "prompt_tokens": 33253,
+        "completion_tokens": 36850,
+        "total_tokens": 70103,
+        "wall_clock_seconds": 403.49799999999993
+      }
+    },
+    {
+      "analysis_id": 793778,
+      "subreddit": "technology",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "economic"
+      ],
+      "total_posts": 78,
+      "baseline_flagged": 1,
+      "model_flagged": 51,
+      "detected": false,
+      "tp": 0,
+      "fp": 51,
+      "fn": 1,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 24487,
+        "completion_tokens": 25613,
+        "total_tokens": 50100,
+        "wall_clock_seconds": 281.333
+      }
+    },
+    {
+      "analysis_id": 796425,
+      "subreddit": "technology",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "ai_risk"
+      ],
+      "total_posts": 77,
+      "baseline_flagged": 1,
+      "model_flagged": 53,
+      "detected": true,
+      "tp": 1,
+      "fp": 52,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "ai_risk"
+          ],
+          "model": [
+            "ai_risk"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.8,
+          "model": [
+            0.9
+          ],
+          "mae": 0.09999999999999998
+        },
+        "importance": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            3
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "",
+          "model": "",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "",
+          "model": "",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 28102,
+        "completion_tokens": 24496,
+        "total_tokens": 52598,
+        "wall_clock_seconds": 280.11
+      }
+    },
+    {
+      "analysis_id": 799556,
+      "subreddit": "collapse",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "economic",
+        "political"
+      ],
+      "total_posts": 2,
+      "baseline_flagged": 1,
+      "model_flagged": 2,
+      "detected": true,
+      "tp": 1,
+      "fp": 1,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "economic",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "economic",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.88,
+          "model": [
+            0.9
+          ],
+          "mae": 0.020000000000000018
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            8
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 2037,
+        "completion_tokens": 1863,
+        "total_tokens": 3900,
+        "wall_clock_seconds": 25.137
+      }
+    },
+    {
+      "analysis_id": 799875,
+      "subreddit": "ukraine",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "political"
+      ],
+      "total_posts": 40,
+      "baseline_flagged": 1,
+      "model_flagged": 36,
+      "detected": true,
+      "tp": 1,
+      "fp": 35,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.85,
+          "model": [
+            0.88
+          ],
+          "mae": 0.030000000000000027
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            7
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            2
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "UKR",
+          "model": "UKR",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Eastern Europe",
+          "model": "Eastern Europe",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 16163,
+        "completion_tokens": 14643,
+        "total_tokens": 30806,
+        "wall_clock_seconds": 157.663
+      }
+    },
+    {
+      "analysis_id": 804264,
+      "subreddit": "gardening",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 3,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 2181,
+        "completion_tokens": 663,
+        "total_tokens": 2844,
+        "wall_clock_seconds": 8.758
+      }
+    },
+    {
+      "analysis_id": 805093,
+      "subreddit": "energy",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "economic",
+        "political"
+      ],
+      "total_posts": 3,
+      "baseline_flagged": 1,
+      "model_flagged": 3,
+      "detected": true,
+      "tp": 1,
+      "fp": 2,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "economic",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "economic",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            8
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 1875,
+        "completion_tokens": 1998,
+        "total_tokens": 3873,
+        "wall_clock_seconds": 20.97
+      }
+    },
+    {
+      "analysis_id": 808046,
+      "subreddit": "Economics",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "economic"
+      ],
+      "total_posts": 2,
+      "baseline_flagged": 1,
+      "model_flagged": 2,
+      "detected": true,
+      "tp": 1,
+      "fp": 1,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "economic"
+          ],
+          "model": [
+            "economic"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.88,
+          "model": [
+            0.88
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            2
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 3119,
+        "completion_tokens": 2234,
+        "total_tokens": 5353,
+        "wall_clock_seconds": 25.313
+      }
+    },
+    {
+      "analysis_id": 808600,
+      "subreddit": "Cooking",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 6,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 4899,
+        "completion_tokens": 1022,
+        "total_tokens": 5921,
+        "wall_clock_seconds": 13.166
+      }
+    },
+    {
+      "analysis_id": 808846,
+      "subreddit": "askscience",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 1,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1270,
+        "completion_tokens": 460,
+        "total_tokens": 1730,
+        "wall_clock_seconds": 6.302
+      }
+    },
+    {
+      "analysis_id": 809315,
+      "subreddit": "woodworking",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 4,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 2720,
+        "completion_tokens": 1057,
+        "total_tokens": 3777,
+        "wall_clock_seconds": 14.53
+      }
+    },
+    {
+      "analysis_id": 812461,
+      "subreddit": "collapse",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "natural_disaster",
+        "economic",
+        "political"
+      ],
+      "total_posts": 5,
+      "baseline_flagged": 1,
+      "model_flagged": 4,
+      "detected": true,
+      "tp": 1,
+      "fp": 3,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "natural_disaster",
+            "economic",
+            "political"
+          ],
+          "model": [
+            "NATURAL_DISASTER",
+            "ECONOMIC"
+          ],
+          "jaccard": 0.6666666666666666
+        },
+        "confidence": {
+          "baseline": 0.88,
+          "model": [
+            0.8
+          ],
+          "mae": 0.07999999999999996
+        },
+        "importance": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 4880,
+        "completion_tokens": 3190,
+        "total_tokens": 8070,
+        "wall_clock_seconds": 39.045
+      }
+    },
+    {
+      "analysis_id": 813924,
+      "subreddit": "woodworking",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 3,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 2308,
+        "completion_tokens": 720,
+        "total_tokens": 3028,
+        "wall_clock_seconds": 9.194
+      }
+    },
+    {
+      "analysis_id": 814873,
+      "subreddit": "news",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "POLITICAL"
+      ],
+      "total_posts": 29,
+      "baseline_flagged": 1,
+      "model_flagged": 21,
+      "detected": true,
+      "tp": 1,
+      "fp": 20,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "POLITICAL"
+          ],
+          "model": [
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            3
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 10368,
+        "completion_tokens": 10470,
+        "total_tokens": 20838,
+        "wall_clock_seconds": 98.972
+      }
+    },
+    {
+      "analysis_id": 815378,
+      "subreddit": "geopolitics",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "economic"
+      ],
+      "total_posts": 4,
+      "baseline_flagged": 1,
+      "model_flagged": 4,
+      "detected": true,
+      "tp": 1,
+      "fp": 3,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "economic"
+          ],
+          "model": [
+            "conflict",
+            "economic"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            8
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 4103,
+        "completion_tokens": 2174,
+        "total_tokens": 6277,
+        "wall_clock_seconds": 21.653
+      }
+    },
+    {
+      "analysis_id": 816610,
+      "subreddit": "news",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "HEALTH"
+      ],
+      "total_posts": 30,
+      "baseline_flagged": 1,
+      "model_flagged": 24,
+      "detected": true,
+      "tp": 1,
+      "fp": 23,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "HEALTH"
+          ],
+          "model": [
+            "health"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            4
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 11205,
+        "completion_tokens": 10294,
+        "total_tokens": 21499,
+        "wall_clock_seconds": 109.54499999999999
+      }
+    },
+    {
+      "analysis_id": 818236,
+      "subreddit": "energy",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "economic"
+      ],
+      "total_posts": 2,
+      "baseline_flagged": 1,
+      "model_flagged": 2,
+      "detected": true,
+      "tp": 1,
+      "fp": 1,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "economic"
+          ],
+          "model": [
+            "economic"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.8,
+          "model": [
+            0.78
+          ],
+          "mae": 0.020000000000000018
+        },
+        "importance": {
+          "baseline": 4,
+          "model": [
+            5
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 1655,
+        "completion_tokens": 3007,
+        "total_tokens": 4662,
+        "wall_clock_seconds": 32.045
+      }
+    },
+    {
+      "analysis_id": 821202,
+      "subreddit": "ukraine",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "political"
+      ],
+      "total_posts": 51,
+      "baseline_flagged": 1,
+      "model_flagged": 43,
+      "detected": true,
+      "tp": 1,
+      "fp": 42,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            8
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            2
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "UKR",
+          "model": "UKR",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Eastern Europe",
+          "model": "Eastern Europe",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 20876,
+        "completion_tokens": 17869,
+        "total_tokens": 38745,
+        "wall_clock_seconds": 181.39099999999996
+      }
+    },
+    {
+      "analysis_id": 828531,
+      "subreddit": "gardening",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 4,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1891,
+        "completion_tokens": 1023,
+        "total_tokens": 2914,
+        "wall_clock_seconds": 12.65
+      }
+    },
+    {
+      "analysis_id": 833029,
+      "subreddit": "news",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "ECONOMIC",
+        "CONFLICT"
+      ],
+      "total_posts": 33,
+      "baseline_flagged": 1,
+      "model_flagged": 29,
+      "detected": true,
+      "tp": 1,
+      "fp": 28,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "ECONOMIC",
+            "CONFLICT"
+          ],
+          "model": [
+            "economic",
+            "conflict"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.88
+          ],
+          "mae": 0.020000000000000018
+        },
+        "importance": {
+          "baseline": 7,
+          "model": [
+            6
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            2
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 12238,
+        "completion_tokens": 12991,
+        "total_tokens": 25229,
+        "wall_clock_seconds": 142.415
+      }
+    },
+    {
+      "analysis_id": 836301,
+      "subreddit": "woodworking",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 1,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1433,
+        "completion_tokens": 386,
+        "total_tokens": 1819,
+        "wall_clock_seconds": 5.837
+      }
+    },
+    {
+      "analysis_id": 839700,
+      "subreddit": "geopolitics",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "economic"
+      ],
+      "total_posts": 2,
+      "baseline_flagged": 1,
+      "model_flagged": 2,
+      "detected": true,
+      "tp": 1,
+      "fp": 1,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "economic"
+          ],
+          "model": [
+            "conflict",
+            "economic"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.88,
+          "model": [
+            0.9
+          ],
+          "mae": 0.020000000000000018
+        },
+        "importance": {
+          "baseline": 8,
+          "model": [
+            8
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 1778,
+        "completion_tokens": 1509,
+        "total_tokens": 3287,
+        "wall_clock_seconds": 16.409
+      }
+    },
+    {
+      "analysis_id": 840482,
+      "subreddit": "worldnews",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "political"
+      ],
+      "total_posts": 100,
+      "baseline_flagged": 1,
+      "model_flagged": 95,
+      "detected": true,
+      "tp": 1,
+      "fp": 94,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 8,
+          "model": [
+            7
+          ],
+          "mae": 1
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "SAU",
+          "model": "SAU",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 33911,
+        "completion_tokens": 36668,
+        "total_tokens": 70579,
+        "wall_clock_seconds": 374.621
+      }
+    },
+    {
+      "analysis_id": 844664,
+      "subreddit": "Cooking",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 2,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1718,
+        "completion_tokens": 742,
+        "total_tokens": 2460,
+        "wall_clock_seconds": 10.493
+      }
+    },
+    {
+      "analysis_id": 847283,
+      "subreddit": "Economics",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict",
+        "economic",
+        "political"
+      ],
+      "total_posts": 1,
+      "baseline_flagged": 1,
+      "model_flagged": 1,
+      "detected": true,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict",
+            "economic",
+            "political"
+          ],
+          "model": [
+            "conflict",
+            "economic",
+            "political"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.86,
+          "model": [
+            0.85
+          ],
+          "mae": 0.010000000000000009
+        },
+        "importance": {
+          "baseline": 6,
+          "model": [
+            6
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            2
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "IRN",
+          "model": "IRN",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Middle East",
+          "model": "Middle East",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 1418,
+        "completion_tokens": 1917,
+        "total_tokens": 3335,
+        "wall_clock_seconds": 22.238
+      }
+    },
+    {
+      "analysis_id": 847906,
+      "subreddit": "collapse",
+      "tier": "threat-dense",
+      "baseline_status": "false_positive",
+      "baseline_categories": [
+        "economic",
+        "political"
+      ],
+      "total_posts": 1,
+      "baseline_flagged": 1,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1658,
+        "completion_tokens": 591,
+        "total_tokens": 2249,
+        "wall_clock_seconds": 8.157
+      }
+    },
+    {
+      "analysis_id": 849225,
+      "subreddit": "energy",
+      "tier": "ambiguous",
+      "baseline_status": "false_positive",
+      "baseline_categories": [
+        "economic"
+      ],
+      "total_posts": 1,
+      "baseline_flagged": 1,
+      "model_flagged": 1,
+      "detected": null,
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 1279,
+        "completion_tokens": 1313,
+        "total_tokens": 2592,
+        "wall_clock_seconds": 14.898
+      }
+    },
+    {
+      "analysis_id": 853970,
+      "subreddit": "ukraine",
+      "tier": "threat-dense",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict"
+      ],
+      "total_posts": 42,
+      "baseline_flagged": 1,
+      "model_flagged": 30,
+      "detected": false,
+      "tp": 0,
+      "fp": 30,
+      "fn": 1,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 20165,
+        "completion_tokens": 13478,
+        "total_tokens": 33643,
+        "wall_clock_seconds": 141.874
+      }
+    },
+    {
+      "analysis_id": 854137,
+      "subreddit": "askscience",
+      "tier": "benign",
+      "baseline_status": "no_threat",
+      "baseline_categories": [],
+      "total_posts": 2,
+      "baseline_flagged": 0,
+      "model_flagged": 0,
+      "detected": null,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "fields": {},
+      "usage": {
+        "prompt_tokens": 2703,
+        "completion_tokens": 856,
+        "total_tokens": 3559,
+        "wall_clock_seconds": 10.998
+      }
+    },
+    {
+      "analysis_id": 856309,
+      "subreddit": "technology",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "economic"
+      ],
+      "total_posts": 82,
+      "baseline_flagged": 1,
+      "model_flagged": 50,
+      "detected": true,
+      "tp": 1,
+      "fp": 49,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "economic"
+          ],
+          "model": [
+            "ECONOMIC"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.75,
+          "model": [
+            0.75
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 3,
+          "model": [
+            3
+          ],
+          "mae": 0
+        },
+        "geography_country": {
+          "baseline": "USA",
+          "model": "USA",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "North America",
+          "model": "North America",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 28596,
+        "completion_tokens": 27488,
+        "total_tokens": 56084,
+        "wall_clock_seconds": 300.23400000000004
+      }
+    },
+    {
+      "analysis_id": 858014,
+      "subreddit": "news",
+      "tier": "ambiguous",
+      "baseline_status": "confirmed_threat",
+      "baseline_categories": [
+        "conflict"
+      ],
+      "total_posts": 154,
+      "baseline_flagged": 1,
+      "model_flagged": 129,
+      "detected": true,
+      "tp": 1,
+      "fp": 128,
+      "fn": 0,
+      "fields": {
+        "categories": {
+          "baseline": [
+            "conflict"
+          ],
+          "model": [
+            "conflict"
+          ],
+          "jaccard": 1.0
+        },
+        "confidence": {
+          "baseline": 0.9,
+          "model": [
+            0.9
+          ],
+          "mae": 0.0
+        },
+        "importance": {
+          "baseline": 6,
+          "model": [
+            6
+          ],
+          "mae": 0
+        },
+        "weirdness": {
+          "baseline": 2,
+          "model": [
+            3
+          ],
+          "mae": 1
+        },
+        "geography_country": {
+          "baseline": "NLD",
+          "model": "NLD",
+          "match": true
+        },
+        "geography_region": {
+          "baseline": "Western Europe",
+          "model": "Western Europe",
+          "match": true
+        }
+      },
+      "usage": {
+        "prompt_tokens": 54294,
+        "completion_tokens": 55963,
+        "total_tokens": 110257,
+        "wall_clock_seconds": 595.818
+      }
+    }
+  ]
+}

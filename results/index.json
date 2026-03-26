@@ -19,5 +19,26 @@
     "model": "Qwen/Qwen2.5-72B-Instruct-AWQ",
     "prompt": "threat_stage1",
     "total_tokens": 484786
+  },
+  {
+    "run_dir": "2026-03-26T21-31-32_gpt-5-mini_threat_stage1",
+    "timestamp": "2026-03-26T21-31-32",
+    "model": "gpt-5-mini",
+    "prompt": "threat_stage1",
+    "total_tokens": 1991045
+  },
+  {
+    "run_dir": "2026-03-26T22-04-39_gpt-5_threat_stage1",
+    "timestamp": "2026-03-26T22-04-39",
+    "model": "gpt-5",
+    "prompt": "threat_stage1",
+    "total_tokens": 2014070
+  },
+  {
+    "run_dir": "2026-03-26T22-12-19_openai_gpt-oss-120b_threat_stage1",
+    "timestamp": "2026-03-26T22-12-19",
+    "model": "openai/gpt-oss-120b",
+    "prompt": "threat_stage1",
+    "total_tokens": 1704231
   }
 ]

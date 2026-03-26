@@ -133,10 +133,12 @@ def run_batch(
     last_err = None
     for attempt in range(1, max_retries + 1):
         try:
+            t0 = time.monotonic()
             completion = client.chat.completions.create(
                 model=model,
                 messages=[{"role": "user", "content": prompt}],
             )
+            wall_clock = time.monotonic() - t0
 
             raw = completion.choices[0].message.content
             cleaned = clean_json_response(raw)
@@ -147,6 +149,7 @@ def run_batch(
                 "prompt_tokens": completion.usage.prompt_tokens if completion.usage else 0,
                 "completion_tokens": completion.usage.completion_tokens if completion.usage else 0,
                 "total_tokens": completion.usage.total_tokens if completion.usage else 0,
+                "wall_clock_seconds": round(wall_clock, 3),
             }
 
             return response, usage
@@ -181,7 +184,7 @@ def run_chunked_batch(
 
     # Chunk and run each
     all_results = []
-    total_usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+    total_usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "wall_clock_seconds": 0}
 
     for offset in range(0, len(all_posts_list), chunk_size):
         chunk_posts = all_posts_list[offset:offset + chunk_size]
@@ -236,12 +239,13 @@ def run_benchmark(
     baseline_path: str = "data/baseline.jsonl",
     results_dir: str = "results",
     max_workers: int = 5,
+    base_url: str | None = None,
 ) -> Path:
     """Run a prompt against all baseline batches and save results.
 
     Returns path to the run directory.
     """
-    client = OpenAI()
+    client = OpenAI(base_url=base_url) if base_url else OpenAI()
 
     # Load data
     all_posts = load_bench_data(data_path)
@@ -255,9 +259,14 @@ def run_benchmark(
     run_dir = Path(results_dir) / f"{timestamp}_{model_slug}_{prompt_name}"
     run_dir.mkdir(parents=True, exist_ok=True)
 
+    # Filter out analyses with empty post_snapshot_ids
+    baseline = [a for a in baseline if a.post_snapshot_ids]
+    print(f"Running {len(baseline)} analyses (skipped empty batches)\n")
+
     # Run batches in parallel
     all_results = []
-    total_usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+    total_usage = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0, "wall_clock_seconds": 0}
+    errors = []
 
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = {
@@ -269,10 +278,18 @@ def run_benchmark(
         }
 
         for future in as_completed(futures):
-            result = future.result()
-            all_results.append(result)
-            for k in total_usage:
-                total_usage[k] += result["usage"][k]
+            analysis = futures[future]
+            try:
+                result = future.result()
+                all_results.append(result)
+                for k in total_usage:
+                    total_usage[k] += result["usage"][k]
+            except Exception as e:
+                errors.append((analysis.analysis_id, str(e)))
+                print(f"  [ERROR] analysis {analysis.analysis_id}: {e}")
+
+    if errors:
+        print(f"\n{len(errors)} analyses failed (saved {len(all_results)} successful)")
 
     # Sort by analysis_id for consistent output
     all_results.sort(key=lambda r: r["analysis_id"])
@@ -327,6 +344,7 @@ def main():
     parser.add_argument("--baseline", default="data/baseline.jsonl", help="Path to baseline.jsonl")
     parser.add_argument("--results-dir", default="results", help="Results directory")
     parser.add_argument("--workers", type=int, default=10, help="Parallel API calls (default: 10)")
+    parser.add_argument("--base-url", default=None, help="Custom API base URL (e.g., http://localhost:8080/v1)")
 
     args = parser.parse_args()
     run_benchmark(
@@ -336,6 +354,7 @@ def main():
         baseline_path=args.baseline,
         results_dir=args.results_dir,
         max_workers=args.workers,
+        base_url=args.base_url,
     )
 
 

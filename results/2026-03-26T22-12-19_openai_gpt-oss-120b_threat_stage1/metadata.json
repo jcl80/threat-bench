@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-03-26T22-12-19",
+  "model": "openai/gpt-oss-120b",
+  "prompt": "threat_stage1",
+  "git_commit": "3f39f861ee12",
+  "data_path": "data/bench_data.jsonl",
+  "baseline_path": "data/baseline.jsonl",
+  "total_analyses": 97,
+  "total_posts": 2385,
+  "total_usage": {
+    "prompt_tokens": 1064098,
+    "completion_tokens": 640133,
+    "total_tokens": 1704231,
+    "wall_clock_seconds": 9317.44
+  }
+}
