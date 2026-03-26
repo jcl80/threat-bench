@@ -12,5 +12,12 @@
     "model": "gpt-4o",
     "prompt": "threat_stage1",
     "total_tokens": 451432
+  },
+  {
+    "run_dir": "2026-03-26T04-19-04_Qwen_Qwen2.5-72B-Instruct-AWQ_threat_stage1",
+    "timestamp": "2026-03-26T04-19-04",
+    "model": "Qwen/Qwen2.5-72B-Instruct-AWQ",
+    "prompt": "threat_stage1",
+    "total_tokens": 484786
   }
 ]

@@ -14,3 +14,6 @@ wheels/
 
 # Claude Code
 .claude/
+
+# Generated comparison visualizations (regenerate with python3 visualize.py)
+results/comparison.png
