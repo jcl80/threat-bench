@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-03-30T21-24-15",
+  "model": "gpt-5",
+  "prompt_variant": "b",
+  "no_thinking": false,
+  "data_path": "data/eye-of-sauron/bench_simplified.jsonl",
+  "git_commit": "9c794d61f9d1",
+  "max_workers": 100,
+  "max_tokens": 2048,
+  "temperature": null,
+  "total_articles": 450,
+  "completed": 450,
+  "errors": 0,
+  "parse_failures": 0,
+  "accuracy": 0.7333,
+  "wall_clock_total_seconds": 21.1,
+  "articles_per_minute": 1278.7
+}

@@ -1,0 +1,33 @@
+You are classifying whether a news article describes an event of existential or global importance.
+
+An article is existentially important if:
+
+- It involves more than a hundred deaths.
+- It involves many cases of a sickness that might spread, or a new pathogen.
+- It involves conflict between nuclear powers.
+- It involves conflict that could escalate into global conflict, even if it hasn't already.
+- It involves terrorist groups displaying new capabilities.
+- ... and in general, if it involves events that could threaten humanity as a whole.
+
+Examples:
+
+- Houthis cut undersea internet cables: Yes, because it is a terrorist group displaying new capabilities.
+- Macron suggests sending NATO troops to Ukraine: Yes, as a NATO v. Russia conflict could spiral into a global war.
+- New, more deadly and infectious strain of covid detected in Lausanne: Yes, as a deadly pandemic is one of the ways a large swathe of humanity could die at once.
+- OpenAI releases new capable model: Yes, as that model could be used by bad actors to cause mayhem, or it itself could threaten humanity.
+- US company lands probe in the Moon: No, as it doesn't threaten humanity.
+- Start of a war (e.g., the start of the war in Ukraine): Almost always yes, as rocking the international status quo could spiral out.
+- Later developments of a war (e.g., current war in Gaza, or current war in Ukraine): Probably no, as the likelihood of spiraling out declines as the rules of engagement become clearer.
+- Opinion and discussion pieces are not existentially important. A sign something is an opinion piece is a somewhat generic title, like "Why Nuclear Risks Have Not Gone Away", or "At the Brink: Confronting the Risk of Nuclear War". Review articles and lists of events are likewise not existentially important unless they bring up novel events.
+- In a broader conflict, small-fry developments are not existentially important. For example, small developments in the Ukraine or Gaza wars are not existentially important unless the new events themselves involve more than 1k deaths, even if the conflict as a whole involves more than that number of deaths. On the other hand, developments involving escalations or nuclear weapons are not "small fry".
+- We are in 2026. Reviews of past conflicts, like 9/11, or a tornado in 2023, no longer count as existentially important, even if they were so at the time.
+
+---
+
+Article title: {title}
+
+Article summary: {summary}
+
+A previous AI's reasoning about this article: {importance_reasoning}
+
+Is this article existentially important? Answer only "yes" or "no".

@@ -1,0 +1,5 @@
+Article title: {title}
+
+Article summary: {summary}
+
+Is this article describing an event of existential or global importance? Answer yes or no.
