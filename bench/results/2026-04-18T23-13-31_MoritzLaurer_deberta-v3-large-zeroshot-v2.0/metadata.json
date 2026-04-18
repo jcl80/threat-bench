@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-04-18T23-13-31",
+  "model": "MoritzLaurer/deberta-v3-large-zeroshot-v2.0",
+  "hypothesis": "This text describes a real-world threat, crisis, or dangerous event such as armed conflict, disease outbreak, economic collapse, political instability, natural disaster, or AI risk.",
+  "threshold": 0.5,
+  "batch_size": 8,
+  "device": "cuda",
+  "total_posts": 2385,
+  "flagged": 1072,
+  "flag_rate": 0.4495,
+  "wall_clock_seconds": 12.0,
+  "posts_per_second": 198.1
+}
