@@ -271,6 +271,11 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
     model.to(device)
 
     entail_idx = _nli_entail_idx(model) if mode == "A" else None
+    if mode == "A":
+        print(f"Mode A label map: id2label={dict(model.config.id2label)} "
+              f"entail_idx={entail_idx} not_entail_idx={1 - entail_idx}")
+        print(f"  → label_gpt5=1 (threat) → labels={entail_idx} (entailment)")
+        print(f"  → label_gpt5=0 (safe)   → labels={1 - entail_idx} (not_entail)")
 
     # --- Tokenize ---
     train_records = encode_dataset(train_posts, tokenizer, mode, entail_idx)
