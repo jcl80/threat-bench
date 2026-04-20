@@ -257,10 +257,17 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
 
     # --- Model ---
     tokenizer = AutoTokenizer.from_pretrained(cfg["model"])
-    kwargs = {"num_labels": cfg["num_labels"]}
+    model = AutoModelForSequenceClassification.from_pretrained(
+        cfg["model"], num_labels=cfg["num_labels"]
+    )
     if mode == "B":
-        kwargs["ignore_mismatched_sizes"] = True
-    model = AutoModelForSequenceClassification.from_pretrained(cfg["model"], **kwargs)
+        # The MoritzLaurer v2 checkpoint's 2-class head is shape-compatible,
+        # so HF keeps its weights by default. For the ablation we want a
+        # *fresh* head — reinitialize it explicitly.
+        std = model.config.initializer_range
+        torch.nn.init.normal_(model.classifier.weight, mean=0.0, std=std)
+        torch.nn.init.zeros_(model.classifier.bias)
+        print("Mode B: reinitialized classifier head (fresh random weights)")
     model.to(device)
 
     entail_idx = _nli_entail_idx(model) if mode == "A" else None
