@@ -237,7 +237,8 @@ def score_binary(preds: list[dict], posts: list[dict]) -> dict:
 
 
 def run(mode: str, epochs: int, batch_size: int, lr: float,
-        save_model: bool, limit: int | None, fp32: bool = False) -> Path:
+        save_model: bool, limit: int | None, fp32: bool = False,
+        freeze_backbone: bool = False) -> Path:
     cfg = MODE_CONFIG[mode]
     set_seed(SEED)
     torch.manual_seed(SEED)
@@ -268,6 +269,19 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
         torch.nn.init.normal_(model.classifier.weight, mean=0.0, std=std)
         torch.nn.init.zeros_(model.classifier.bias)
         print("Mode B: reinitialized classifier head (fresh random weights)")
+
+    if freeze_backbone:
+        n_frozen = 0
+        for name, param in model.named_parameters():
+            if not name.startswith("classifier"):
+                param.requires_grad = False
+                n_frozen += 1
+        trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
+        total = sum(p.numel() for p in model.parameters())
+        print(f"Backbone frozen: {n_frozen} tensors frozen, "
+              f"{trainable:,} trainable / {total:,} total "
+              f"({100*trainable/total:.2f}% trainable)")
+
     model.to(device)
 
     entail_idx = _nli_entail_idx(model) if mode == "A" else None
@@ -327,7 +341,7 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
     # warmup_ratio is silently dropped in newer transformers — use warmup_steps.
     # BF16 is stable here (same dynamic range as FP32, just less precision).
     total_steps = (len(train_posts) // batch_size) * epochs
-    warmup_steps = max(100, total_steps // 10)
+    warmup_steps = max(100, total_steps // 5)  # 20% warmup
     if fp32:
         use_bf16 = False
         use_fp16 = False
@@ -352,7 +366,9 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
         learning_rate=lr,
         weight_decay=0.01,
         warmup_steps=warmup_steps,
-        max_grad_norm=1.0,
+        max_grad_norm=0.5,
+        adam_epsilon=1e-6,  # DeBERTa-v3 fine-tune stability: avoid NaN from
+                            # tiny Adam v_hat denominator in early steps
         bf16=use_bf16,
         fp16=use_fp16,
         logging_steps=20,
@@ -362,7 +378,7 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
         dataloader_num_workers=2,
     )
     print(f"Training config: lr={lr} warmup_steps={warmup_steps}/{total_steps} "
-          f"grad_clip=1.0 precision={precision}")
+          f"grad_clip=0.5 adam_eps=1e-6 precision={precision}")
 
     trainer = Trainer(
         model=model,
@@ -450,12 +466,16 @@ def main():
     parser.add_argument("--save-model", action="store_true")
     parser.add_argument("--fp32", action="store_true",
                         help="Force FP32 training (avoids BF16 precision loss at low LR)")
+    parser.add_argument("--freeze-backbone", action="store_true",
+                        help="Linear probe: freeze transformer body, train only the "
+                             "classifier head. Use as fallback if full fine-tune is unstable.")
     parser.add_argument("--limit", type=int, default=None,
                         help="Truncate train set for smoke testing (e.g. --limit 30)")
     args = parser.parse_args()
 
     run(args.mode, args.epochs, args.batch_size, args.lr,
-        args.save_model, args.limit, fp32=args.fp32)
+        args.save_model, args.limit, fp32=args.fp32,
+        freeze_backbone=args.freeze_backbone)
 
 
 if __name__ == "__main__":
