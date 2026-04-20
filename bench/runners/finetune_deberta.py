@@ -237,7 +237,7 @@ def score_binary(preds: list[dict], posts: list[dict]) -> dict:
 
 
 def run(mode: str, epochs: int, batch_size: int, lr: float,
-        save_model: bool, limit: int | None) -> Path:
+        save_model: bool, limit: int | None, fp32: bool = False) -> Path:
     cfg = MODE_CONFIG[mode]
     set_seed(SEED)
     torch.manual_seed(SEED)
@@ -296,7 +296,7 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
     # BF16 is stable here (same dynamic range as FP32, just less precision).
     total_steps = (len(train_posts) // batch_size) * epochs
     warmup_steps = max(100, total_steps // 10)
-    use_bf16 = torch.cuda.is_available() and torch.cuda.is_bf16_supported()
+    use_bf16 = (not fp32) and torch.cuda.is_available() and torch.cuda.is_bf16_supported()
     args = TrainingArguments(
         output_dir=str(run_dir / "checkpoints"),
         num_train_epochs=epochs,
@@ -400,12 +400,14 @@ def main():
                         help="DeBERTa-large is unstable early; 5e-6 is the safe default. "
                              "Try 1e-5 if underfitting after stable training.")
     parser.add_argument("--save-model", action="store_true")
+    parser.add_argument("--fp32", action="store_true",
+                        help="Force FP32 training (avoids BF16 precision loss at low LR)")
     parser.add_argument("--limit", type=int, default=None,
                         help="Truncate train set for smoke testing (e.g. --limit 30)")
     args = parser.parse_args()
 
     run(args.mode, args.epochs, args.batch_size, args.lr,
-        args.save_model, args.limit)
+        args.save_model, args.limit, fp32=args.fp32)
 
 
 if __name__ == "__main__":
