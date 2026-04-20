@@ -282,6 +282,38 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
     test_records = encode_dataset(test_posts, tokenizer, mode, entail_idx)
     train_ds = ListDataset(train_records)
 
+    # --- Sanity check: verify labels reach the model and influence loss ---
+    print("\n=== PRE-TRAIN SANITY CHECK ===")
+    from transformers import DataCollatorWithPadding
+    _collator = DataCollatorWithPadding(tokenizer, padding="longest")
+    # Pick 8 records, mix of pos/neg labels
+    _pos = [r for r in train_records if r["labels"] == (entail_idx if mode == "A" else 1)][:4]
+    _neg = [r for r in train_records if r["labels"] == (1 - entail_idx if mode == "A" else 0)][:4]
+    _batch_records = _pos + _neg
+    _batch_in = _collator([{k: v for k, v in r.items() if k != "snapshot_id"}
+                           for r in _batch_records])
+    _batch_in = {k: v.to(device) for k, v in _batch_in.items()}
+    print(f"Batch shapes: input_ids={_batch_in['input_ids'].shape} "
+          f"labels={_batch_in['labels'].tolist()}")
+    model.eval()
+    with torch.no_grad():
+        _out = model(**_batch_in)
+        print(f"Logits[0:3]: {_out.logits[:3].cpu().tolist()}")
+        print(f"Per-example CE losses:")
+        loss_fn = torch.nn.CrossEntropyLoss(reduction="none")
+        _losses = loss_fn(_out.logits, _batch_in["labels"]).cpu().tolist()
+        for i, (r, l) in enumerate(zip(_batch_records, _losses)):
+            print(f"  snapshot_id={r['snapshot_id']} label={r['labels']} loss={l:.4f}")
+        # Flip labels, recompute loss — if labels matter, loss changes
+        flipped = 1 - _batch_in["labels"]
+        _losses_flipped = loss_fn(_out.logits, flipped).cpu().tolist()
+        print(f"Mean loss (real labels): {sum(_losses)/len(_losses):.4f}")
+        print(f"Mean loss (flipped):     {sum(_losses_flipped)/len(_losses_flipped):.4f}")
+        print(f"=> labels DO affect loss (values differ): "
+              f"{abs(sum(_losses)-sum(_losses_flipped))>1e-3}")
+    model.train()
+    print("=== END SANITY CHECK ===\n")
+
     # --- Collator (dynamic padding) ---
     from transformers import DataCollatorWithPadding
     collator = DataCollatorWithPadding(tokenizer, padding="longest")
@@ -296,7 +328,23 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
     # BF16 is stable here (same dynamic range as FP32, just less precision).
     total_steps = (len(train_posts) // batch_size) * epochs
     warmup_steps = max(100, total_steps // 10)
-    use_bf16 = (not fp32) and torch.cuda.is_available() and torch.cuda.is_bf16_supported()
+    if fp32:
+        use_bf16 = False
+        use_fp16 = False
+        precision = "fp32"
+    elif torch.cuda.is_available() and torch.cuda.is_bf16_supported():
+        use_bf16 = True
+        use_fp16 = False
+        precision = "bf16"
+    elif torch.cuda.is_available():
+        use_bf16 = False
+        use_fp16 = True
+        precision = "fp16"
+    else:
+        use_bf16 = False
+        use_fp16 = False
+        precision = "fp32 (cpu)"
+
     args = TrainingArguments(
         output_dir=str(run_dir / "checkpoints"),
         num_train_epochs=epochs,
@@ -306,7 +354,7 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
         warmup_steps=warmup_steps,
         max_grad_norm=1.0,
         bf16=use_bf16,
-        fp16=not use_bf16 and torch.cuda.is_available(),
+        fp16=use_fp16,
         logging_steps=20,
         save_strategy="no",
         report_to="none",
@@ -314,7 +362,7 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
         dataloader_num_workers=2,
     )
     print(f"Training config: lr={lr} warmup_steps={warmup_steps}/{total_steps} "
-          f"grad_clip=1.0 bf16={use_bf16}")
+          f"grad_clip=1.0 precision={precision}")
 
     trainer = Trainer(
         model=model,
