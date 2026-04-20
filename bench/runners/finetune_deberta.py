@@ -287,22 +287,28 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
     run_dir.mkdir(parents=True, exist_ok=True)
 
     # --- Train ---
-    use_bf16 = torch.cuda.is_available() and torch.cuda.is_bf16_supported()
+    # DeBERTa-large is sensitive to LR + warmup. Use explicit warmup_steps
+    # (warmup_ratio is deprecated and silently dropped in newer transformers).
+    # FP32 for stability — BF16 can amplify large early gradients on this model.
+    total_steps = (len(train_posts) // batch_size) * epochs
+    warmup_steps = max(100, total_steps // 10)
     args = TrainingArguments(
         output_dir=str(run_dir / "checkpoints"),
         num_train_epochs=epochs,
         per_device_train_batch_size=batch_size,
         learning_rate=lr,
         weight_decay=0.01,
-        warmup_ratio=0.1,
-        bf16=use_bf16,
-        fp16=not use_bf16 and torch.cuda.is_available(),
-        logging_steps=50,
+        warmup_steps=warmup_steps,
+        max_grad_norm=1.0,
+        bf16=False,
+        fp16=False,
+        logging_steps=20,
         save_strategy="no",
         report_to="none",
         seed=SEED,
         dataloader_num_workers=2,
     )
+    print(f"Training config: lr={lr} warmup_steps={warmup_steps} total_steps={total_steps} precision=fp32")
 
     trainer = Trainer(
         model=model,
@@ -384,7 +390,9 @@ def main():
     parser.add_argument("--mode", required=True, choices=["A", "B", "C"])
     parser.add_argument("--epochs", type=int, default=3)
     parser.add_argument("--batch-size", type=int, default=8)
-    parser.add_argument("--lr", type=float, default=2e-5)
+    parser.add_argument("--lr", type=float, default=1e-5,
+                        help="DeBERTa-large is sensitive; 1e-5 is the safe default. "
+                             "Try 5e-6 if training is unstable, 2e-5 if underfitting.")
     parser.add_argument("--save-model", action="store_true")
     parser.add_argument("--limit", type=int, default=None,
                         help="Truncate train set for smoke testing (e.g. --limit 30)")
