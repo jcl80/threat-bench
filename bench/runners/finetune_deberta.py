@@ -63,7 +63,7 @@ MODE_CONFIG = {
     "A": {
         "name": "nli_continue",
         "model": "MoritzLaurer/deberta-v3-large-zeroshot-v2.0",
-        "num_labels": 3,
+        "num_labels": 2,  # MoritzLaurer v2 is binary NLI: entailment/not_entailment
         "slug": "nli_continue",
     },
     "B": {
@@ -119,17 +119,11 @@ def load_split(data_path: str) -> tuple[list[dict], list[dict]]:
 
 
 def _nli_entail_idx(model) -> int:
+    """Find the entailment class index. Other index = not-entailment (binary head)."""
     for idx, label in model.config.id2label.items():
-        if "entail" in label.lower():
+        if "entail" in label.lower() and "not" not in label.lower():
             return int(idx)
     raise ValueError(f"No entailment label in {model.config.id2label}")
-
-
-def _nli_contradict_idx(model) -> int:
-    for idx, label in model.config.id2label.items():
-        if "contrad" in label.lower():
-            return int(idx)
-    raise ValueError(f"No contradiction label in {model.config.id2label}")
 
 
 def encode_dataset(
@@ -137,7 +131,6 @@ def encode_dataset(
     tokenizer,
     mode: str,
     entail_idx: int | None = None,
-    contradict_idx: int | None = None,
 ) -> list[dict]:
     out = []
     for p in posts:
@@ -151,7 +144,9 @@ def encode_dataset(
                 max_length=MAX_TOKENS,
                 padding=False,
             )
-            enc["labels"] = entail_idx if label_bin == 1 else contradict_idx
+            # Binary NLI: label 1 -> entailment index, label 0 -> the other
+            not_entail_idx = 1 - entail_idx
+            enc["labels"] = entail_idx if label_bin == 1 else not_entail_idx
         else:
             enc = tokenizer(
                 premise,
@@ -269,11 +264,10 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
     model.to(device)
 
     entail_idx = _nli_entail_idx(model) if mode == "A" else None
-    contradict_idx = _nli_contradict_idx(model) if mode == "A" else None
 
     # --- Tokenize ---
-    train_records = encode_dataset(train_posts, tokenizer, mode, entail_idx, contradict_idx)
-    test_records = encode_dataset(test_posts, tokenizer, mode, entail_idx, contradict_idx)
+    train_records = encode_dataset(train_posts, tokenizer, mode, entail_idx)
+    test_records = encode_dataset(test_posts, tokenizer, mode, entail_idx)
     train_ds = ListDataset(train_records)
 
     # --- Collator (dynamic padding) ---
