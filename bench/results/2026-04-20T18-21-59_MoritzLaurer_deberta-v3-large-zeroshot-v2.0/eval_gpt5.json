@@ -1,0 +1,201 @@
+{
+  "ground_truth": "gpt5",
+  "total_posts": 2385,
+  "predictions_count": 2385,
+  "overall": {
+    "tp": 824,
+    "fp": 124,
+    "fn": 490,
+    "tn": 947,
+    "precision": 0.8692,
+    "recall": 0.6271,
+    "f1": 0.7286,
+    "accuracy": 0.7426,
+    "support_pos": 1314,
+    "support_neg": 1071
+  },
+  "by_tier": {
+    "threat_dense": {
+      "tp": 658,
+      "fp": 107,
+      "fn": 210,
+      "tn": 205,
+      "precision": 0.8601,
+      "recall": 0.7581,
+      "f1": 0.8059,
+      "accuracy": 0.7314,
+      "support_pos": 868,
+      "support_neg": 312
+    },
+    "ambiguous": {
+      "tp": 166,
+      "fp": 17,
+      "fn": 280,
+      "tn": 702,
+      "precision": 0.9071,
+      "recall": 0.3722,
+      "f1": 0.5278,
+      "accuracy": 0.7451,
+      "support_pos": 446,
+      "support_neg": 719
+    },
+    "benign": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 40,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 1.0,
+      "support_pos": 0,
+      "support_neg": 40
+    }
+  },
+  "by_subreddit": {
+    "Cooking": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 12,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 1.0,
+      "support_pos": 0,
+      "support_neg": 12
+    },
+    "Economics": {
+      "tp": 30,
+      "fp": 2,
+      "fn": 64,
+      "tn": 78,
+      "precision": 0.9375,
+      "recall": 0.3191,
+      "f1": 0.4762,
+      "accuracy": 0.6207,
+      "support_pos": 94,
+      "support_neg": 80
+    },
+    "askscience": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 1.0,
+      "support_pos": 0,
+      "support_neg": 5
+    },
+    "collapse": {
+      "tp": 32,
+      "fp": 13,
+      "fn": 8,
+      "tn": 36,
+      "precision": 0.7111,
+      "recall": 0.8,
+      "f1": 0.7529,
+      "accuracy": 0.764,
+      "support_pos": 40,
+      "support_neg": 49
+    },
+    "energy": {
+      "tp": 9,
+      "fp": 3,
+      "fn": 16,
+      "tn": 31,
+      "precision": 0.75,
+      "recall": 0.36,
+      "f1": 0.4865,
+      "accuracy": 0.678,
+      "support_pos": 25,
+      "support_neg": 34
+    },
+    "gardening": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 12,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 1.0,
+      "support_pos": 0,
+      "support_neg": 12
+    },
+    "geopolitics": {
+      "tp": 41,
+      "fp": 9,
+      "fn": 13,
+      "tn": 4,
+      "precision": 0.82,
+      "recall": 0.7593,
+      "f1": 0.7885,
+      "accuracy": 0.6716,
+      "support_pos": 54,
+      "support_neg": 13
+    },
+    "news": {
+      "tp": 97,
+      "fp": 3,
+      "fn": 78,
+      "tn": 55,
+      "precision": 0.97,
+      "recall": 0.5543,
+      "f1": 0.7055,
+      "accuracy": 0.6524,
+      "support_pos": 175,
+      "support_neg": 58
+    },
+    "technology": {
+      "tp": 30,
+      "fp": 9,
+      "fn": 122,
+      "tn": 538,
+      "precision": 0.7692,
+      "recall": 0.1974,
+      "f1": 0.3141,
+      "accuracy": 0.8126,
+      "support_pos": 152,
+      "support_neg": 547
+    },
+    "ukraine": {
+      "tp": 271,
+      "fp": 59,
+      "fn": 63,
+      "tn": 94,
+      "precision": 0.8212,
+      "recall": 0.8114,
+      "f1": 0.8163,
+      "accuracy": 0.7495,
+      "support_pos": 334,
+      "support_neg": 153
+    },
+    "woodworking": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 11,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 1.0,
+      "support_pos": 0,
+      "support_neg": 11
+    },
+    "worldnews": {
+      "tp": 314,
+      "fp": 26,
+      "fn": 126,
+      "tn": 71,
+      "precision": 0.9235,
+      "recall": 0.7136,
+      "f1": 0.8051,
+      "accuracy": 0.7169,
+      "support_pos": 440,
+      "support_neg": 97
+    }
+  }
+}

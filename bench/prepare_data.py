@@ -55,10 +55,12 @@ def prepare(out_path: Path) -> None:
             title = row["post"].get("title", "")
             body = row["post"].get("body", "")
 
-            # Collect top-level comment texts
+            # Collect top-level comment texts.
+            # NOTE: bench_data.jsonl has swapped fields — the comment text is
+            # stored under "author" and the username is under "body".
             comments = []
             for c in row.get("comments", []):
-                text = c.get("body", "").strip()
+                text = c.get("author", "").strip()
                 if text:
                     comments.append(text)
 
