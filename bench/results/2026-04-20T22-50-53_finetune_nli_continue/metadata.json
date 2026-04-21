@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-04-20T22-50-53",
+  "mode": "A",
+  "mode_name": "nli_continue",
+  "base_model": "MoritzLaurer/deberta-v3-large-zeroshot-v2.0",
+  "num_labels": 2,
+  "hypothesis": "This text describes a real-world threat, crisis, or dangerous event such as armed conflict, disease outbreak, economic collapse, political instability, natural disaster, or AI risk.",
+  "epochs": 3,
+  "batch_size": 8,
+  "learning_rate": 0.0001,
+  "max_tokens": 512,
+  "max_premise_chars": 1500,
+  "seed": 42,
+  "device": "cuda",
+  "bf16": true,
+  "train_size": 1907,
+  "test_size": 478,
+  "train_seconds": 44.5,
+  "predict_seconds": 18.9,
+  "train_metrics": {
+    "tp": 860,
+    "fp": 237,
+    "fn": 191,
+    "tn": 619,
+    "precision": 0.784,
+    "recall": 0.8183,
+    "f1": 0.8007,
+    "accuracy": 0.7756
+  },
+  "test_metrics": {
+    "tp": 226,
+    "fp": 59,
+    "fn": 37,
+    "tn": 156,
+    "precision": 0.793,
+    "recall": 0.8593,
+    "f1": 0.8248,
+    "accuracy": 0.7992
+  }
+}

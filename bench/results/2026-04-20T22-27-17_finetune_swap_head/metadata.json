@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-04-20T22-27-17",
+  "mode": "B",
+  "mode_name": "swap_head",
+  "base_model": "MoritzLaurer/deberta-v3-large-zeroshot-v2.0",
+  "num_labels": 2,
+  "hypothesis": null,
+  "epochs": 3,
+  "batch_size": 8,
+  "learning_rate": 1e-05,
+  "max_tokens": 512,
+  "max_premise_chars": 1500,
+  "seed": 42,
+  "device": "cuda",
+  "bf16": true,
+  "train_size": 1907,
+  "test_size": 478,
+  "train_seconds": 111.0,
+  "predict_seconds": 16.1,
+  "train_metrics": {
+    "tp": 1051,
+    "fp": 856,
+    "fn": 0,
+    "tn": 0,
+    "precision": 0.5511,
+    "recall": 1.0,
+    "f1": 0.7106,
+    "accuracy": 0.5511
+  },
+  "test_metrics": {
+    "tp": 263,
+    "fp": 215,
+    "fn": 0,
+    "tn": 0,
+    "precision": 0.5502,
+    "recall": 1.0,
+    "f1": 0.7099,
+    "accuracy": 0.5502
+  }
+}

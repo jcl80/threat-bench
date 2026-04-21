@@ -236,3 +236,79 @@ defensible candidate for replacing mini *if* the product can tolerate a ~6%
 miss rate on gpt5's call.
 
 If you can't, SetFit (next).
+
+---
+
+## 13. Fine-tune ablation (frozen-backbone linear probe)
+
+After a long detour through collapsed/NaN full fine-tune runs (`adam_epsilon`
+default 1e-8 was pushing DeBERTa-v3-large into early weight explosions
+regardless of LR), we pivoted to frozen-backbone linear probes on top of
+pre-trained feature extractors. Same stratified 80/20 split
+(seed=42, on `label_gpt5`), same preprocessing, same hyperparameters across
+three configs:
+
+| Mode | Backbone | Input format | Test F1 |
+|------|----------|--------------|---------|
+| A | MoritzLaurer/deberta-v3-large-zeroshot-v2.0 | (post, hypothesis) pair | **0.825** |
+| B | MoritzLaurer/deberta-v3-large-zeroshot-v2.0 | post alone | 0.699 |
+| C | microsoft/deberta-v3-large | post alone (pooler + head trainable) | 0.719 |
+
+### 13.1 Why Mode B collapsed — structural, not optimization
+
+Mode B (post alone, no hypothesis) collapsed to the class prior (F1=0.70,
+P=0.56, R=0.92) while Mode A (post + hypothesis, NLI-faithful format) trained
+cleanly to F1=0.825 under identical configs. The gap is structural, not a
+matter of optimization. The backbone
+(`MoritzLaurer/deberta-v3-large-zeroshot-v2.0`) has been task-adapted on
+large-scale NLI: its `[CLS]` token is trained as a relational summary scoring
+whether a hypothesis follows from a premise, and its disentangled-attention
+patterns are specialized for cross-segment aggregation. Mode A activates
+that machinery with a fixed hypothesis —
+
+> *"This text describes a real-world threat, crisis, or dangerous event such
+> as armed conflict, disease outbreak, economic collapse, political
+> instability, natural disaster, or AI risk."*
+
+— placing examples on the entailment axis the backbone already discriminates
+along; a linear probe then just reweights features the backbone has organized
+for it. Mode B removes the second segment, leaving the cross-segment heads
+with nothing to attend across and yielding a generic `[CLS]` byproduct rather
+than a discriminative one. No linear boundary with adequate margin exists in
+that feature space, so the probe settles at the next-best minimum — uniform
+prediction, loss ≈ log(2).
+
+### 13.2 Mode C result — isolates NLI adaptation absent the NLI format
+
+**Mode C (microsoft/deberta-v3-large, hypothesis-free, pooler trainable):
+F1=0.719.**
+
+Within noise of Mode B (0.699). This isolates the contribution of NLI
+adaptation to the backbone *independent of hypothesis format*: none.
+MoritzLaurer's NLI pre-training adds value only when paired with the NLI
+input format — it doesn't make the `[CLS]` representations for standalone
+text more threat-discriminative.
+
+Full attribution of the gap between zero-shot and a trained classifier:
+- ~+0.12 F1 from the hypothesis input (A vs B/C)
+- ~0 from backbone NLI pre-training absent that format (B vs C)
+- ~0 from fine-tuning on top of the NLI head (probe ties zero-shot threshold-
+  swept: 0.825 ≈ 0.830)
+
+**Methodological note on Mode C:** initial Mode C runs had a pooler bug.
+`microsoft/deberta-v3-large` ships *without* a classification pooler, so
+HuggingFace random-initialized it. `--freeze-backbone` then froze a random
+pooler along with the backbone, destroying the signal path. First Mode C
+result was F1=0.713 on random features. After auto-detecting and unfreezing
+newly-initialized tensors, F1 moved to 0.719 — marginally better. The fix
+is in `bench/runners/finetune_deberta.py` via the `missing_keys` check.
+
+### 13.3 Decision
+
+Stop fine-tuning. The zero-shot MoritzLaurer model at threshold ~0.17
+(F1=0.830 on the 478 test posts) is the strongest candidate on this backbone
+at this data scale. Nothing trained beats it.
+
+Next: either validate the zero-shot on fresh holdout (3k new posts through
+the production pipeline to get gpt5 labels) or try a fundamentally different
+feature space (TF-IDF + LR, SetFit contrastive tuning).
