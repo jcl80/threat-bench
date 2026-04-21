@@ -257,18 +257,16 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
     print(f"Test:  {len(test_posts)} ({sum(p['label_gpt5'] for p in test_posts)} pos)")
 
     # --- Model ---
-    # microsoft/deberta-v3-large's tokenizer.json is missing; newer transformers
-    # tries a tiktoken conversion path that fails on the SentencePiece file.
-    # Fall back to the slow tokenizer (use_fast=False) which reads spm.model
-    # directly via sentencepiece.
-    try:
-        tokenizer = AutoTokenizer.from_pretrained(cfg["model"])
-    except ValueError as e:
-        if "tiktoken" in str(e).lower() or "spm.model" in str(e):
-            print(f"Falling back to slow tokenizer for {cfg['model']}")
-            tokenizer = AutoTokenizer.from_pretrained(cfg["model"], use_fast=False)
-        else:
-            raise
+    # microsoft/deberta-v3-large lacks tokenizer.json; newer transformers
+    # tries a broken SPM->tiktoken conversion. Workaround: use MoritzLaurer's
+    # tokenizer (same vocab, since MoritzLaurer fine-tuned FROM microsoft/deberta-v3-large)
+    # which ships with a pre-built tokenizer.json.
+    tokenizer_name = cfg["model"]
+    if cfg["model"] == "microsoft/deberta-v3-large":
+        tokenizer_name = "MoritzLaurer/deberta-v3-large-zeroshot-v2.0"
+        print(f"Using tokenizer from {tokenizer_name} (microsoft/deberta-v3-large "
+              f"tokenizer has a conversion bug in this transformers version)")
+    tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
     model = AutoModelForSequenceClassification.from_pretrained(
         cfg["model"], num_labels=cfg["num_labels"]
     )
