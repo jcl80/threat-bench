@@ -48,7 +48,7 @@ class PostAnalysis(BaseModel):
     geography_country: Optional[str] = None  # ISO 3166-1 alpha-3
     importance: int = Field(default=0, ge=0, le=10)
     weirdness: int = Field(default=0, ge=0, le=10)
-    reasoning: str
+    reasoning: str = ""
     evidence: list[Evidence] = Field(default_factory=list)
 
 

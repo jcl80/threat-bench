@@ -1,0 +1,68 @@
+{
+  "ground_truth": "gpt5",
+  "total_posts": 1020,
+  "predictions_count": 1020,
+  "overall": {
+    "tp": 43,
+    "fp": 19,
+    "fn": 77,
+    "tn": 881,
+    "precision": 0.6935,
+    "recall": 0.3583,
+    "f1": 0.4725,
+    "accuracy": 0.9059,
+    "support_pos": 120,
+    "support_neg": 900
+  },
+  "by_tier": {},
+  "by_subreddit": {
+    "ClaudeAI": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "tn": 252,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.9844,
+      "support_pos": 4,
+      "support_neg": 252
+    },
+    "depression": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 17,
+      "tn": 198,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.9209,
+      "support_pos": 17,
+      "support_neg": 198
+    },
+    "personalfinance": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 2,
+      "tn": 262,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.9887,
+      "support_pos": 2,
+      "support_neg": 263
+    },
+    "politics": {
+      "tp": 43,
+      "fp": 18,
+      "fn": 54,
+      "tn": 169,
+      "precision": 0.7049,
+      "recall": 0.4433,
+      "f1": 0.5443,
+      "accuracy": 0.7465,
+      "support_pos": 97,
+      "support_neg": 187
+    }
+  }
+}

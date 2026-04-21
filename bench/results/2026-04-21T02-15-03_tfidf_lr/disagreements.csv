@@ -1,0 +1,142 @@
+snapshot_id,subreddit,tier,label,tfidf_pred,zs_pred,tfidf_prob,zs_score,title,body_excerpt
+5390634,ukraine,threat_dense,1,1,0,0.831,0.1331,"Magura Naval Drones Could Form ""Anti-Drone Curtain,"" Capability Ukraine Needs and Could Export to the Middle East",
+5390666,ukraine,threat_dense,0,1,0,0.5441,0.0673,"Engine installed. The L200 is heading back to its owners. The root cause: worn crankshaft bearings, which pulled the timing chain tight and destroyed the chain guide. Assembly is done, final tuning is all that's left. Glory to Ukraine! Every donation means fuel, spare parts, and one more evacuation!",
+5407240,Economics,ambiguous,1,0,1,0.4518,0.8828,"After Venezuela blow, Iran supply risks test China's oil strategy",
+5448396,ukraine,threat_dense,0,0,1,0.3129,0.8706,Ukraine's Flamingo missile maker promises FP-9 ballistics will reach Moscow,
+5473310,collapse,threat_dense,1,1,0,0.5714,0.0125,Weekly Observations: What signs of collapse do you see in your region? [in-depth] March 09,"All comments in this thread MUST be greater than 150 characters.
+
+# You MUST include Location: Region when sharing observations.
+
+Example - **Location: New Zealand**
+
+This ONLY applies to top-level comments, not replies to comments.  You're welcome to make regionless or general observations, but you"
+5548184,energy,ambiguous,0,0,1,0.3262,0.2761,Adani vs Vikram Solar Panels,
+5906540,collapse,threat_dense,1,0,1,0.3886,0.4045,Climate change is an inflammatory disease issue,"Published today by Dialogue Earth, the following article concerns the global rise in inflammatory diseases.
+
+&gt; *""Arthritis is among a number of chronic inflammatory disorders increasing in parallel at an epidemic rate.""*
+
+&gt; *""Also on the rise are allergies, asthma, allergic rhinitis, metabolic"
+6088346,energy,ambiguous,0,1,0,0.5446,0.0205,Renewables cut annual electricity bills by one month in Türkiye,
+6088351,energy,ambiguous,1,1,0,0.6019,0.085,"Italy will release 9 million barrels of oil reserves immediately, as part of the IEA's coordinated release. The IEA recommended 400 million barrels total",
+6088355,energy,ambiguous,1,0,1,0.4165,0.7368,"With rising geopolitical tensions, how important is a countries energy independence now?","India is currently facing a huge LPG supply issue, due to the Strait of Hormuz being blocked (with restaurants being shut).
+
+How important is being energy independent; and what do you think countries should implement locally to make the population more self sufficient?"
+6175945,geopolitics,threat_dense,0,1,0,0.6523,0.0212,Russia rakes in $150mn a day in extra revenue from surging oil prices,
+6243416,energy,ambiguous,1,1,0,0.5957,0.0422,Spain’s renewables revolution will keep energy bills low even as gas prices soar,
+6243418,energy,ambiguous,0,0,1,0.4813,0.9473,The longer the War lasts the Better for Clean Tech,"Every spike in Oil and LNG prices during prolonged conflicts ends up speeding the transition to solar, wind, and green hydrogen. Markets move where resilience is needed most."
+6361994,news,ambiguous,1,0,1,0.4132,0.3989,OpenAI Robotics head resigns after deal with Pentagon,
+6362002,news,ambiguous,1,0,1,0.3972,0.9448,Slain Windsor woman expressed fears to CBC News days before she died,
+6362009,news,ambiguous,1,0,1,0.4272,0.562,US skips congressional review to approve munitions sale to Israel,
+6362813,technology,ambiguous,1,0,1,0.4765,0.6802,"‘Invasive’ AI-led mass surveillance in Africa violating freedoms, warn experts - Countries across the continent have spent more than $2bn on Chinese tracking technology that is not ‘necessary or proportionate’, new report finds",
+6362828,technology,ambiguous,0,0,1,0.2702,0.4407,"Fire department turns down $250,000 Google donation amid data center fight",
+6362853,technology,ambiguous,1,0,1,0.4647,0.7441,Pentagon AI chief praises Palantir tech for speeding battlefield strikes,
+6362855,technology,ambiguous,0,1,0,0.5404,0.0016,SoftBank-backed PayPay valued at $12.7 billion in Nasdaq debut as shares jump,
+6363032,technology,ambiguous,1,0,1,0.318,0.3464,Amazon holds engineering meeting following AI-related outages,
+6363038,technology,ambiguous,0,0,1,0.4015,0.5874,Hackers: Democracy's last line of cyber defense,
+6363054,technology,ambiguous,0,0,1,0.3099,0.4336,Chinese tech hubs promote OpenClaw AI agent despite security warnings,
+6363063,technology,ambiguous,1,0,1,0.4781,0.5225,Mom of Tumbler Ridge survivor Maya Gebala suing OpenAI over mass shooting,
+6363100,technology,ambiguous,0,0,1,0.2256,0.2756,Can AI Kill the Venture Capitalist?,
+6363199,technology,ambiguous,1,0,1,0.4816,0.9707,Armed robots take to the battlefield in Ukraine war,
+6363433,Economics,ambiguous,0,0,1,0.3935,0.2449,The national debt isn't $39 trillion. One economist says it's actually $100 trillion | Fortune,
+6363441,Economics,ambiguous,1,0,1,0.3834,0.8779,Consumer sentiment hits lowest reading of the year in early March amid Middle East war,
+6363447,Economics,ambiguous,1,0,1,0.4283,0.2615,US Eases Sanctions on Russian Oil Amid Iran Price Spike,
+6363482,Economics,ambiguous,0,0,1,0.2709,0.4106,India's 20 years of GDP misestimation: New evidence,
+6363485,Economics,ambiguous,1,0,1,0.4471,0.4136,U.S. Inflation Stayed Subdued Before Onset of Iran War,
+6363507,Economics,ambiguous,1,0,1,0.3859,0.9673,Iran war tests Egypt’s unsteady economy,
+6363519,Economics,ambiguous,1,0,1,0.3323,0.7275,"As visitors to Hawaii decline, risks abound: Hawaii faces an urgent need to diversify its economy beyond tourism",
+6363535,Economics,ambiguous,1,1,0,0.7805,0.0322,Nikkei 225 declines more than 6% as oil breaks $100 a barrel,
+6363563,Economics,ambiguous,0,0,1,0.3534,0.8022,The Trillions of Dollars of U.S. Investment at Stake in the Gulf,
+6373136,collapse,threat_dense,0,0,1,0.2893,0.3999,"New book, COLLAPSE: NAVIGATING CIVILIZATION'S PREDICAMENTS WITH WISDOM AND COURAGE, is available for preorder",I’m excited to share with you the announcement of my new book! While writing it I tried to keep in mind those who are collapse-aware as well as those who aren’t. I wanted to write an accessible introduction to collapse. And I also wanted it to contain some suggestions on how to engage with it and re
+6392524,ukraine,threat_dense,1,0,1,0.3908,0.9878,The Sun has Set Over Kyiv on the 1577th Day of the Full-Scale Invasion. Every  reporter carries stories the world hasn't read yet.,
+6392530,ukraine,threat_dense,1,1,0,0.5371,0.0293,"🇺🇦🇬🇧 British Legionnaire, former food relief volunteer &amp; poet Fletch interviewed by Ukrainian journalist Sergey Lyubarsky in Kyiv, January 2025  (English language) on culture, artistry, resistance to barbarism, and being wounded in Luhansk region of the Donbas.","January 2025, Kyiv, Ukraine. 
+
+British food relief volunteer turned legionnaire talks about culture, history, resistance both cultural and military; the arts, poetry and music being composed and performed in Kharkiv; the importance of physical and artistic resistance to Russian barbarism, and also m"
+6392539,ukraine,threat_dense,0,1,0,0.5957,0.1542,Winter Paralympics 2026: Germans protest against russia during medal ceremony,
+6392612,ukraine,threat_dense,0,1,0,0.6791,0.0005,Концерт Ницо Потворно,"Є квиток на концерт у фан зону на Ницо Потворно (Сергій Гусак) 14.03.26 в Атласі (вул.Січових Стрільців, 37-41. Початок о 18:00.
+
+Майже вдвічі дешевше ніж ціна зараз.
+Пишіть в особисті"
+6392665,ukraine,threat_dense,0,1,0,0.7028,0.0266,​Can Ukraine Take Part in European Competition For the Best Loitering Munitions,
+6392671,ukraine,threat_dense,0,1,0,0.6462,0.0133,View on Pokrovsk town from Ukrainian FPV-drone,
+6392686,ukraine,threat_dense,1,1,0,0.6627,0.0242,"Found an episode of a prime time Dutch talk show from April 2016 in my archives, discussing the EU-Ukraine Association Treaty referendum, wherein Dutch journalist and Russia expert Jelle Brandt Corstius delivers an emotional pro-Ukraine plea to vote ""yes"". I added subtitles.",
+6392694,ukraine,threat_dense,1,1,0,0.5318,0.0099,"Verified auction of a flag signed by Zaluzhny and cards signed by Zaluzhny and Bulanov. Starting bid — $100, bid increment — $50. The winner takes Zaluzhny's flag, second place takes the cards. The funds will be used to install a security system in the independent WW3 museum. Info in the comments.",https://apnews.com/article/russia-ukraine-war-battlefield-museum-drones-cd3402cbaa680787de132922288271d8
+6441371,worldnews,threat_dense,1,0,1,0.4061,0.9385,Myanmar’s junta-proxy parliament meets for first time since 2021 coup,
+6441374,worldnews,threat_dense,1,0,1,0.4659,0.9932,"India: 13 Dead, 7 Still Hospitalized After Allegedly Consuming Milk Contaminated with Ethylene Glycol",
+6441430,worldnews,threat_dense,1,0,1,0.4829,0.854,The International Criminal ​Court is investigating alleged crimes against humanity by Belarus,
+6441442,worldnews,threat_dense,1,0,1,0.4214,0.75,SFA recalls two more batches of formula milk products over presence of cereulide toxin,
+6441445,worldnews,threat_dense,0,0,1,0.4995,0.4324,Plea from Tasmania's police commissioner for limit on gun ownership knocked back by government,
+6441471,worldnews,threat_dense,0,0,1,0.473,0.3394,Argentina reaches settlement with holdout funds over 2001 defaulted debt,
+6441472,worldnews,threat_dense,1,0,1,0.4619,0.9951,"Death toll from Kenyan floods rises to 62, police say",
+6441486,worldnews,threat_dense,0,0,1,0.4974,0.749,Hungary’s Orbán claims Ukrainians ‘threatened’ his family as election campaign ramps up,
+6441522,worldnews,threat_dense,1,0,1,0.4723,0.6099,"Polish government launches ""plan B"" to sidestep presidential veto of EU defence loans bill",
+6441916,news,ambiguous,1,0,1,0.4597,0.6987,Netanyahu posts video in response to Iran rumours that he is dead,
+6441929,news,ambiguous,1,0,1,0.461,0.5073,"US airline CEOs urge Congress to end standoff, pay airport security officers",
+6441949,news,ambiguous,0,0,1,0.4127,0.7622,A strong chemical smell forces a 1-hour flight halt at 4 major DC-area airports,
+6441979,news,ambiguous,0,1,0,0.5773,0.0298,Trump ally Ric Grenell stepping down as Kennedy Center president,
+6442404,technology,ambiguous,0,0,1,0.3259,0.6367,"Be wary of AI-generated content on Indigenous cultures, say experts",
+6442427,technology,ambiguous,0,0,1,0.379,0.5776,Companies House suspends online filing service after cyber vulnerability exposes director data,
+6442429,technology,ambiguous,0,0,1,0.4373,0.5552,A superpower goes offline,
+6442504,technology,ambiguous,0,0,1,0.3459,0.4104,"Alabama Is Threatening to Ban Utility-Scale Solar: A proposed Meta-backed solar project in a small, unincorporated town is gearing up to be a big problem for renewables in the state.",
+6442508,technology,ambiguous,0,0,1,0.2735,0.3481,We Need a Plan for When Superintelligent AI Breaks Loose,
+6442509,technology,ambiguous,0,0,1,0.2447,0.5024,AI is dressing up greed as progress on creative rights,
+6443365,Economics,ambiguous,1,1,0,0.5537,0.0539,"3,800 workers are set to strike Monday at one of the nation's largest meatpacking plants",
+6455641,ukraine,threat_dense,1,1,0,0.6444,0.0095,One-third of Russian companies producing Su-34 fighter-bombers are not under sanctions,"Ukrainian military intelligence published a list of 79 companies involved in the production of Su-34 fighter-bombers and their key components and systems.
+
+Almost a third of these companies are not subject to restrictions by any country in the sanctions coalition, meaning they can continue to access"
+6455651,ukraine,threat_dense,0,1,0,0.7076,0.0309,Kharkiv athlete wins silver medal at 2026 Winter Paralympics,
+6455698,ukraine,threat_dense,1,1,0,0.7484,0.0619,Japan Considering Possibility of Purchasing Ukrainian Drones,
+6455702,ukraine,threat_dense,1,1,0,0.6504,0.0528,"France will send the new Surface to Air Missile Samp/t in Ukraine (text in french, not yet found it English or Ukrainian)","Ukraine will ‘test’ a new air defence system supplied by France as early as this year, announces Volodymyr Zelensky
+
+This defence system ‘is the most important topic’ of the discussions between Volodymyr Zelensky and Emmanuel Macron.
+This defence system ‘is the most important topic’ of the discussio"
+6455704,ukraine,threat_dense,1,1,0,0.7299,0.0421,"Japan weighs new deal with Kyiv for Ukrainian-made drones, Japanese media reports",
+6455719,ukraine,threat_dense,0,1,0,0.5095,0.0053,Today is for the volunteers. Thank you for everything you do.,
+6455728,ukraine,threat_dense,0,1,0,0.6541,0.0012,Patreon to support the independent WW3 museum and Maxim Kilderov’s creative work. Great rewards for your support! I’d be very grateful – you’re very welcome. :),https://patreon.com/mkilderov
+7053497,worldnews,threat_dense,0,0,1,0.426,0.2173,Macron announces mediation to salvage European fighter jet project,
+7053523,worldnews,threat_dense,0,0,1,0.4763,0.4854,Taiwan changes 'Korea' to 'S. Korea' in immigration system in protest over Seoul's labeling of it as China,
+7053536,worldnews,threat_dense,0,1,0,0.6723,0.0182,US sees a drop in Canadian visitors as travel patterns shift,
+7053575,worldnews,threat_dense,1,0,1,0.4462,0.7495,Syria unveils plan to eliminate Assad's chemical weapons,
+7053650,worldnews,threat_dense,1,0,1,0.4983,0.8179,"Kenyans will no longer fight for Russia, top diplomat says",
+7053665,worldnews,threat_dense,1,1,0,0.7581,0.0236,"Thailand offers Iran food for plastic pellets, fertiliser",
+7053678,worldnews,threat_dense,1,0,1,0.4597,0.9131,China calls for Pak-Afghan direct talks as fighting escalates,
+7053701,worldnews,threat_dense,1,0,1,0.4178,0.9976,Meningitis outbreak 'declared national emergency' amid deadly outbreak,
+7053764,worldnews,threat_dense,0,0,1,0.397,0.8628,TEPCO delays commercial operation of recently restarted nuclear reactor,
+7053801,worldnews,threat_dense,1,1,0,0.5368,0.0715,Trump seeks to delay meeting with China's Xi by 'a month or so',
+7055006,news,ambiguous,0,0,1,0.485,0.9429,47-year-old Idaho mayor dies after collapsing at town hall event,
+7055011,news,ambiguous,0,0,1,0.4212,0.7241,U.S. assesses China not planning to invade Taiwan in 2027,
+7055052,news,ambiguous,1,0,1,0.4814,0.2849,Trump’s tariffs are hurting American manufacturers instead of helping them,
+7055058,news,ambiguous,1,0,1,0.4845,0.9722,"7 people in the U.S. sickened by E. coli linked to cheese made from raw milk, FDA says",
+7055066,news,ambiguous,1,0,1,0.4236,0.4302,Suspected meteor falling over Cleveland could be seen several states away,
+7055070,news,ambiguous,0,0,1,0.3084,0.3901,"Arizona files criminal charges against Kalshi, accusing prediction market of illegal gambling",
+7055077,news,ambiguous,1,0,1,0.4724,0.8008,Belgium orders ex-diplomat to stand trial for 1961 murder of Congo's Lumumba,
+7055080,news,ambiguous,1,0,1,0.3928,0.4783,Utah woman who wrote book on grief after husband’s death found guilty of murdering him,
+7055088,news,ambiguous,1,0,1,0.4586,0.4009,"US appeals court fines lawyers $30,000 in latest AI-related sanction",
+7055099,news,ambiguous,0,0,1,0.4595,0.3057,Bank of America settles Epstein accusers' lawsuit,
+7055118,news,ambiguous,1,0,1,0.3531,0.7324,"Kansas revoked driver's licenses of 1,700 transgender residents",
+7056319,technology,ambiguous,1,1,0,0.6303,0.0626,China's transition to electric vehicles softens the effect of the Iran war,
+7056387,technology,ambiguous,0,0,1,0.3101,0.2246,The Founder of Anthropic Says He Wants to Protect Humanity From AI. Just Don't Ask How,
+7056392,technology,ambiguous,0,0,1,0.4053,0.4556,"Marquis says over 672,000 people had personal and financial data stolen in ransomware attack | TechCrunch",
+7056465,technology,ambiguous,0,0,1,0.2896,0.4341,Arizona Becomes First State to Criminally Charge Kalshi: The “prediction market” platform is finally facing a serious legal challenge.,
+7056471,technology,ambiguous,1,0,1,0.3805,0.2454,Netanyahu Posts ‘Proof of Life’ Video as A.I. Sows Doubts About What’s Real,
+7056487,technology,ambiguous,1,1,0,0.5932,0.0767,How Pakistan’s people-led solar boom is easing impact of Middle East energy crisis,
+7056492,technology,ambiguous,0,0,1,0.4159,0.2944,"Eight in 10 popular AI chatbots would help teenagers plan violent attacks, report finds",
+7056568,technology,ambiguous,1,0,1,0.4399,0.9517,Cuba’s power system suffers total collapse,
+7056583,technology,ambiguous,0,0,1,0.4294,0.6323,"Meta data center kept secret from citizens in Lebanon Indiana. Lights from construction can be seen from different towns, as they are not complying with ordinances",
+7056603,technology,ambiguous,1,0,1,0.3489,0.2488,Republicans release AI deepfake of James Talarico as phony videos proliferate in midterm races | CNN Politics,
+7079544,ukraine,threat_dense,0,1,0,0.6327,0.0045,"In honor of ArtFriday 🎨, I’ll show you a new handmade necklace. Made from a Ukrainian coin dedicated to the Forces of Unmanned Systems of Ukraine🇺🇦 By purchasing our products, you help Ukrainian Defenders and the family of Ukrainian volunteers 🤝","Our store👇
+https://www.etsy.com/shop/TwoSoulsCreationsUA
+
+reports on our work here 👇
+https://www.instagram.com/twosoulscreations"
+7079584,ukraine,threat_dense,0,1,0,0.5478,0.0141,Ukrainian DefenceTech Company Swarmer Shares Surge Up to 10x After Historic Nasdaq Debut,
+7079624,ukraine,threat_dense,1,0,1,0.4911,0.2385,UK and Ukraine sign new defence pact as Zelenskyy says Ukrainians 'know they can trust' Britain,
+7079642,ukraine,threat_dense,1,1,0,0.5925,0.0809,"Ukraine has received the full set of EU accession conditions for the first time, Deputy PM Svyrydenko announced in Brussels. [NOELREPORTS]",
+7079646,ukraine,threat_dense,1,1,0,0.7712,0.0421,​Ukraine Already Uses FZ605 From Thales as Alternative to U.S. Vampire Against Shahed Drones,
+7079650,ukraine,threat_dense,1,1,0,0.6613,0.1158,Zelensky to visit Starmer to sign new Ukraine-UK defence pact,
+7079659,ukraine,threat_dense,1,0,1,0.4615,0.6899,Japan Warns of Data Leak Risks in Ukraine Tied to Huawei Use,
+7079677,ukraine,threat_dense,1,0,1,0.4867,0.7729,"Steam is allowing a game that glorifies the Bucha/Hostomel atrocities as ""Heroism.""","This was posted in the gaming subreddit. I want to share here but reposts are not allowed. Copying verbatim:
+
+
+I am a PC gamer from Kyiv (Ukraine), and I need to bring your attention to a disturbing trend in Steam’s content moderation.
+
+A ""game"" called ""Ukrainian Warfare: Gostomel Heroes"" (AppID: 39"

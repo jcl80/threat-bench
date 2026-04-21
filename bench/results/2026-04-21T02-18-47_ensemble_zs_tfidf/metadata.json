@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-04-21T02-18-47",
+  "model": "ensemble_zs_tfidf",
+  "tfidf_source": "bench/results/2026-04-21T02-15-03_tfidf_lr/predictions.jsonl",
+  "zeroshot_source": "bench/results/2026-04-18T23-13-31_MoritzLaurer_deberta-v3-large-zeroshot-v2.0/predictions.jsonl",
+  "seed": 42,
+  "n_test": 478,
+  "fold_A_to_B_weights": {
+    "zs": 2.7628010867794823,
+    "tfidf": 2.9696821644455933,
+    "bias": -2.6875569169053235
+  },
+  "fold_B_to_A_weights": {
+    "zs": 3.1095006808339085,
+    "tfidf": 2.8252308208954613,
+    "bias": -2.77233550462268
+  },
+  "test_at_0.5": {
+    "threshold": 0.5,
+    "tp": 207,
+    "fp": 34,
+    "fn": 56,
+    "tn": 181,
+    "precision": 0.8589,
+    "recall": 0.7871,
+    "f1": 0.8214,
+    "accuracy": 0.8117
+  },
+  "test_best_f1": {
+    "threshold": 0.27,
+    "tp": 247,
+    "fp": 66,
+    "fn": 16,
+    "tn": 149,
+    "precision": 0.7891,
+    "recall": 0.9392,
+    "f1": 0.8576,
+    "accuracy": 0.8285
+  },
+  "tfidf_best_f1": {
+    "threshold": 0.44,
+    "tp": 230,
+    "fp": 59,
+    "fn": 33,
+    "tn": 156,
+    "precision": 0.7958,
+    "recall": 0.8745,
+    "f1": 0.8333,
+    "accuracy": 0.8075
+  },
+  "zs_best_f1": {
+    "threshold": 0.16,
+    "tp": 229,
+    "fp": 58,
+    "fn": 34,
+    "tn": 157,
+    "precision": 0.7979,
+    "recall": 0.8707,
+    "f1": 0.8327,
+    "accuracy": 0.8075
+  }
+}

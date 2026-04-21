@@ -24,8 +24,9 @@ TIERS = {
 }
 SUB_TO_TIER = {s: t for t, subs in TIERS.items() for s in subs}
 
-GPT5_MINI_OUTPUT = ROOT / "results/2026-03-26T21-31-32_gpt-5-mini_threat_stage1/output.jsonl"
-GPT5_OUTPUT = ROOT / "results/2026-03-26T22-04-39_gpt-5_threat_stage1/output.jsonl"
+DEFAULT_GPT5_MINI_OUTPUT = ROOT / "results/2026-03-26T21-31-32_gpt-5-mini_threat_stage1/output.jsonl"
+DEFAULT_GPT5_OUTPUT = ROOT / "results/2026-03-26T22-04-39_gpt-5_threat_stage1/output.jsonl"
+DEFAULT_BENCH_DATA = ROOT / "data" / "bench_data.jsonl"
 
 
 def _load_flagged_ids(output_path: Path) -> set[int]:
@@ -42,11 +43,14 @@ def _load_flagged_ids(output_path: Path) -> set[int]:
     return flagged
 
 
-def prepare(out_path: Path) -> None:
-    flagged_mini = _load_flagged_ids(GPT5_MINI_OUTPUT)
-    flagged_gpt5 = _load_flagged_ids(GPT5_OUTPUT)
-
-    bench_path = ROOT / "data" / "bench_data.jsonl"
+def prepare(
+    out_path: Path,
+    mini_output: Path = DEFAULT_GPT5_MINI_OUTPUT,
+    gpt5_output: Path = DEFAULT_GPT5_OUTPUT,
+    bench_path: Path = DEFAULT_BENCH_DATA,
+) -> None:
+    flagged_mini = _load_flagged_ids(mini_output)
+    flagged_gpt5 = _load_flagged_ids(gpt5_output)
     posts = []
     with open(bench_path) as f:
         for line in f:
@@ -88,8 +92,10 @@ def prepare(out_path: Path) -> None:
     print(f"  label_gpt5_mini: {n_mini} positive ({n_mini/n:.1%})")
     print(f"  label_gpt5:      {n_gpt5} positive ({n_gpt5/n:.1%})")
 
-    for tier in ["threat_dense", "ambiguous", "benign"]:
+    for tier in ["threat_dense", "ambiguous", "benign", "unknown"]:
         tp = [p for p in posts if p["tier"] == tier]
+        if not tp:
+            continue
         m = sum(p["label_gpt5_mini"] for p in tp)
         g = sum(p["label_gpt5"] for p in tp)
         print(f"  {tier:15s}: {len(tp):4d} posts | mini={m:4d} ({m/len(tp):.1%}) | gpt5={g:4d} ({g/len(tp):.1%})")
@@ -98,8 +104,19 @@ def prepare(out_path: Path) -> None:
 def main():
     parser = argparse.ArgumentParser(description="Prepare per-post benchmark data")
     parser.add_argument("--out", default="bench/data/posts.jsonl", help="Output path")
+    parser.add_argument("--mini-output", default=str(DEFAULT_GPT5_MINI_OUTPUT),
+                        help="Path to gpt-5-mini stage1 output.jsonl")
+    parser.add_argument("--gpt5-output", default=str(DEFAULT_GPT5_OUTPUT),
+                        help="Path to gpt-5 stage1 output.jsonl")
+    parser.add_argument("--bench-data", default=str(DEFAULT_BENCH_DATA),
+                        help="Path to bench_data.jsonl")
     args = parser.parse_args()
-    prepare(Path(args.out))
+    prepare(
+        Path(args.out),
+        mini_output=Path(args.mini_output),
+        gpt5_output=Path(args.gpt5_output),
+        bench_path=Path(args.bench_data),
+    )
 
 
 if __name__ == "__main__":

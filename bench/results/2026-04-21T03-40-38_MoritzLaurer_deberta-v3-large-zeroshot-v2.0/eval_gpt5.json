@@ -1,0 +1,141 @@
+{
+  "ground_truth": "gpt5",
+  "total_posts": 1686,
+  "predictions_count": 1686,
+  "overall": {
+    "tp": 730,
+    "fp": 102,
+    "fn": 337,
+    "tn": 517,
+    "precision": 0.8774,
+    "recall": 0.6842,
+    "f1": 0.7688,
+    "accuracy": 0.7396,
+    "support_pos": 1067,
+    "support_neg": 619
+  },
+  "by_tier": {
+    "threat_dense": {
+      "tp": 521,
+      "fp": 69,
+      "fn": 163,
+      "tn": 160,
+      "precision": 0.8831,
+      "recall": 0.7617,
+      "f1": 0.8179,
+      "accuracy": 0.7459,
+      "support_pos": 684,
+      "support_neg": 229
+    },
+    "ambiguous": {
+      "tp": 209,
+      "fp": 33,
+      "fn": 174,
+      "tn": 357,
+      "precision": 0.8636,
+      "recall": 0.5457,
+      "f1": 0.6688,
+      "accuracy": 0.7322,
+      "support_pos": 383,
+      "support_neg": 390
+    }
+  },
+  "by_subreddit": {
+    "Economics": {
+      "tp": 60,
+      "fp": 5,
+      "fn": 58,
+      "tn": 78,
+      "precision": 0.9231,
+      "recall": 0.5085,
+      "f1": 0.6557,
+      "accuracy": 0.6866,
+      "support_pos": 118,
+      "support_neg": 83
+    },
+    "collapse": {
+      "tp": 36,
+      "fp": 16,
+      "fn": 21,
+      "tn": 32,
+      "precision": 0.6923,
+      "recall": 0.6316,
+      "f1": 0.6606,
+      "accuracy": 0.6476,
+      "support_pos": 57,
+      "support_neg": 48
+    },
+    "energy": {
+      "tp": 19,
+      "fp": 0,
+      "fn": 7,
+      "tn": 23,
+      "precision": 1.0,
+      "recall": 0.7308,
+      "f1": 0.8444,
+      "accuracy": 0.8571,
+      "support_pos": 26,
+      "support_neg": 23
+    },
+    "geopolitics": {
+      "tp": 161,
+      "fp": 12,
+      "fn": 47,
+      "tn": 26,
+      "precision": 0.9306,
+      "recall": 0.774,
+      "f1": 0.8451,
+      "accuracy": 0.7602,
+      "support_pos": 208,
+      "support_neg": 38
+    },
+    "news": {
+      "tp": 108,
+      "fp": 19,
+      "fn": 50,
+      "tn": 62,
+      "precision": 0.8504,
+      "recall": 0.6835,
+      "f1": 0.7579,
+      "accuracy": 0.7113,
+      "support_pos": 158,
+      "support_neg": 81
+    },
+    "technology": {
+      "tp": 22,
+      "fp": 9,
+      "fn": 59,
+      "tn": 194,
+      "precision": 0.7097,
+      "recall": 0.2716,
+      "f1": 0.3929,
+      "accuracy": 0.7606,
+      "support_pos": 81,
+      "support_neg": 203
+    },
+    "ukraine": {
+      "tp": 139,
+      "fp": 13,
+      "fn": 61,
+      "tn": 45,
+      "precision": 0.9145,
+      "recall": 0.695,
+      "f1": 0.7898,
+      "accuracy": 0.7132,
+      "support_pos": 200,
+      "support_neg": 58
+    },
+    "worldnews": {
+      "tp": 185,
+      "fp": 28,
+      "fn": 34,
+      "tn": 57,
+      "precision": 0.8685,
+      "recall": 0.8447,
+      "f1": 0.8565,
+      "accuracy": 0.7961,
+      "support_pos": 219,
+      "support_neg": 85
+    }
+  }
+}

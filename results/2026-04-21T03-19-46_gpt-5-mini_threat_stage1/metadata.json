@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-04-21T03-19-46",
+  "model": "gpt-5-mini",
+  "prompt": "threat_stage1",
+  "git_commit": "9a69b90854ce",
+  "data_path": "bench/data/holdout/bench_data_holdout.jsonl",
+  "baseline_path": "/tmp/baseline_probe.jsonl",
+  "total_analyses": 5,
+  "total_posts": 1686,
+  "total_usage": {
+    "prompt_tokens": 50496,
+    "completion_tokens": 44350,
+    "total_tokens": 94846,
+    "wall_clock_seconds": 578.018
+  }
+}

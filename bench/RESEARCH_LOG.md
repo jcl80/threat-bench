@@ -312,3 +312,196 @@ at this data scale. Nothing trained beats it.
 Next: either validate the zero-shot on fresh holdout (3k new posts through
 the production pipeline to get gpt5 labels) or try a fundamentally different
 feature space (TF-IDF + LR, SetFit contrastive tuning).
+
+---
+
+## 14. TF-IDF + Logistic Regression baseline
+
+Added a lexical baseline — `TfidfVectorizer(ngram=(1,2), min_df=2,
+max_features=20000, sublinear_tf=True)` + `LogisticRegression(C=1.0,
+class_weight='balanced')`. Trained on the same 1907-post split, scored on
+the 478 test.
+
+**Result on 478 test:** F1=0.833 at threshold 0.44.
+
+Same F1 as zero-shot MoritzLaurer (0.830). A bag-of-words model matches a
+435M-parameter NLI transformer on this task at this scale, in ~10 seconds
+of CPU training. The task has a lot of lexical signal.
+
+## 15. Error-overlap analysis and stacked ensemble
+
+If TF-IDF and zero-shot have disjoint errors, ensembling could push past
+either one. Checked this directly:
+
+```
+                         tfidf correct    tfidf wrong
+  zs correct              328               57
+  zs wrong                 53               40
+```
+
+- **c/(c+d) = 0.570** — of 93 zero-shot errors, TF-IDF fixes 53.
+- Cohen's kappa = 0.538 — only moderate agreement. The two models make
+  genuinely different decisions, not correlated ones.
+- Of 57 zero-shot false positives, TF-IDF correctly rejects 33 (57.9%).
+- Of 36 zero-shot false negatives, TF-IDF correctly catches 20 (55.6%).
+
+Well above the ~15% complementarity threshold. Ensemble was worth building.
+
+### 15.1 Proper stacking with out-of-fold predictions
+
+First pass was a 2-fold meta-LR on the 478 test set. Data-starved. Rebuilt
+with proper stacking:
+
+1. 5-fold StratifiedKFold on the 1907 training posts.
+2. For each fold, fit TF-IDF + LR on 4 folds, predict on held-out → every
+   training post has an OOF TF-IDF probability that didn't see it during
+   fit.
+3. Zero-shot probabilities are already unbiased (no training) on all posts.
+4. Meta-LR fits on 1907 × [zs_prob, tfidf_oof_prob] → label.
+5. A final TF-IDF + LR on the full 1907 training set produces probabilities
+   for the 478 test posts.
+6. Single eval pass on the 478 test, no leakage.
+
+**Result on 478 test:** F1=0.868 at threshold 0.30. Gain over best individual:
+**+0.034 F1**. Meta-LR weights: `zs=+2.518, tfidf=+5.532, bias=-3.793`.
+
+Both weights clearly positive → the ensemble uses both signals. TF-IDF
+weight is ~2× zero-shot — interpreted either as "TF-IDF carries more
+discriminative signal on this distribution" or "OOF TF-IDF probs are
+softer than test-time probs and the meta-LR compensates." Either way,
+neither signal dominates and both contribute.
+
+## 16. In-distribution holdout validation
+
+Fresh pull from production: 134 analyses, 1686 posts across the same 8
+subreddits used in training, all `analyzed_at >= 2026-04-05` (everything
+is strictly newer than the training baseline). New pipeline:
+`bench/fetch_holdout.py` pulls posts + comments + production analyses
+directly from the Sentinel DB; `--per-subreddit` gives balanced
+distribution.
+
+Labels regenerated via `runner.py` with both gpt-5-mini and gpt-5 stage 1
+on the fresh data, then `bench/prepare_data.py` (now CLI-configurable)
+merges into `posts_holdout.jsonl`. TF-IDF refit on the 1907 training split
+and applied to the 1686 holdout; DeBERTa zero-shot rerun on Vast; saved
+meta-LR weights applied to combine.
+
+**Notable distribution shift:** gpt-5 positive rate 55% (training) → 63%
+(holdout). Threat density has drifted up.
+
+### 16.1 Results at each model's shipped threshold
+
+| Model | Training test F1 | Holdout F1 @ shipped thr | ΔF1 |
+|-------|------------------|--------------------------|-----|
+| Zero-shot (thr 0.17) | 0.833 | 0.814 | **−0.019** |
+| TF-IDF + LR (thr 0.44) | 0.833 | 0.829 | **−0.004** |
+| **Ensemble (thr 0.30)** | **0.868** | **0.844** | **−0.024** |
+
+### 16.2 Threshold stability
+
+| Model | Shipped thr | Holdout-best thr | Gap (F1) |
+|-------|-------------|------------------|----------|
+| Zero-shot | 0.17 | 0.05 | +0.018 |
+| TF-IDF + LR | 0.44 | 0.43 | +0.006 |
+| Ensemble | 0.30 | 0.27 | +0.008 |
+
+Thresholds held. The deployment decision is legitimate.
+
+### 16.3 Important calibration finding
+
+**Ensemble advantage shrank from +0.034 (training test) → +0.015
+(holdout).** The +0.034 was partially a specific-test-set artifact. Real
+lift over TF-IDF alone is closer to +0.015 F1. Still positive, still worth
+shipping on these subreddits, but smaller than the training number
+suggested. Lesson for future work: size gains against held-out data, not
+cross-validated folds.
+
+## 17. Out-of-distribution holdout
+
+Fresh pull from a deliberately different subreddit set:
+- `politics` (adjacent to worldnews, different community)
+- `ClaudeAI` (adjacent to technology, AI-specific)
+- `depression` (far — mental health)
+- `personalfinance` (far — economic-adjacent)
+
+1020 posts, 150 per subreddit target. Positive rate: 31.9% (mini) / **11.8%
+(gpt5)** — much lower than Holdout A's 63%, because most of these subs
+aren't threat-dense.
+
+### 17.1 Results at each model's shipped threshold
+
+| Model | Training test F1 | OOD F1 @ shipped thr | ΔF1 |
+|-------|------------------|----------------------|-----|
+| Zero-shot (thr 0.17) | 0.833 | **0.552** | −0.281 |
+| TF-IDF + LR (thr 0.44) | 0.833 | 0.452 | −0.381 |
+| Ensemble (thr 0.30) | 0.868 | 0.530 | −0.338 |
+
+**Ensemble no longer wins.** Zero-shot is both the best OOD model and the
+most robust (smallest F1 drop). TF-IDF is the least robust — vocabulary
+effects don't transfer. Part of the absolute F1 drop is arithmetic (lower
+positive rate → lower F1 for the same underlying decision quality), but
+the ranking reversal (zero-shot > ensemble > TF-IDF) is a real finding.
+
+### 17.2 Per-subreddit flag rates (gpt-5)
+
+| Subreddit | Flag rate |
+|-----------|-----------|
+| politics | 33.9% |
+| depression | 6.7% |
+| ClaudeAI | 1.8% |
+| personalfinance | 1.0% |
+
+`politics` behaves like in-distribution threat-dense content. The other
+three have so few positives (3–17 each) that per-sub metrics are noisy.
+Aggregate F1 is dominated by politics.
+
+### 17.3 Threshold instability on OOD
+
+| Model | Shipped thr | OOD-best thr | Gap (F1) |
+|-------|-------------|--------------|----------|
+| Zero-shot | 0.17 | 0.13 | +0.022 |
+| TF-IDF + LR | 0.44 | 0.49 | +0.032 |
+| Ensemble | 0.30 | 0.37 | +0.011 |
+
+Zero-shot and TF-IDF boundaries both drifted. Any deployment to new
+subreddits should re-sweep thresholds.
+
+## 18. Deployment recommendation
+
+**For the 8 baseline subreddits** (ukraine, worldnews, collapse,
+geopolitics, Economics, technology, news, energy), ship the **stacked
+ensemble at threshold 0.30**. Expected operating point on fresh
+in-distribution data: F1 ≈ 0.84, recall ≈ 0.87, precision ≈ 0.82. Sends
+~20% fewer posts to Stage 2 than gpt-5-mini does while catching ~87% of
+gpt-5-confirmed threats.
+
+**For subreddits outside this set**, the ensemble is unsafe. Two options:
+1. Use zero-shot alone at threshold 0.17, re-sweep per-subreddit if
+   resources permit. Expected F1 depends strongly on base rate (0.55 at
+   11% positive rate, likely higher on threat-denser subs).
+2. Collect 500+ labeled posts on the target subreddit and refit TF-IDF +
+   re-run OOF stacking.
+
+**Things to monitor in production:**
+- Positive rate drifts over time (55% → 63% in ~1 month). Track and
+  occasionally re-sweep thresholds.
+- Ensemble's precision is more sensitive to base rate than zero-shot's.
+- TF-IDF is vocabulary-dependent; any significant vocabulary shift
+  (new named entities, new topics) degrades it.
+
+## 19. Assets
+
+Scripts (all in `bench/`):
+- `fetch_holdout.py` — production DB → fresh baseline + bench data
+- `prepare_data.py` — merge runner outputs into posts.jsonl (CLI-configurable)
+- `runners/nli_deberta.py` — zero-shot NLI scoring
+- `runners/tfidf_baseline.py` — TF-IDF + LR baseline
+- `runners/error_overlap.py` — model disagreement analysis
+- `runners/ensemble.py` — 2-fold meta-LR (superseded)
+- `runners/stacked_ensemble.py` — proper 5-fold OOF stacking
+- `runners/finetune_deberta.py` — frozen-backbone / linear-probe fine-tune
+- `runners/validate_holdout.py` — single-shot evaluation on any held-out set
+- `compare_probe_vs_zeroshot.py` — head-to-head threshold sweep
+
+Meta-LR weights (production): `zs=+2.518, tfidf=+5.532, bias=-3.793`.
+Apply as `sigmoid(w_zs*zs + w_tf*tfidf + bias)`.

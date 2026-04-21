@@ -40,5 +40,40 @@
     "model": "openai/gpt-oss-120b",
     "prompt": "threat_stage1",
     "total_tokens": 1704231
+  },
+  {
+    "run_dir": "2026-04-21T03-19-46_gpt-5-mini_threat_stage1",
+    "timestamp": "2026-04-21T03-19-46",
+    "model": "gpt-5-mini",
+    "prompt": "threat_stage1",
+    "total_tokens": 94846
+  },
+  {
+    "run_dir": "2026-04-21T03-25-08_gpt-5-mini_threat_stage1",
+    "timestamp": "2026-04-21T03-25-08",
+    "model": "gpt-5-mini",
+    "prompt": "threat_stage1",
+    "total_tokens": 2112219
+  },
+  {
+    "run_dir": "2026-04-21T03-25-44_gpt-5_threat_stage1",
+    "timestamp": "2026-04-21T03-25-44",
+    "model": "gpt-5",
+    "prompt": "threat_stage1",
+    "total_tokens": 2154275
+  },
+  {
+    "run_dir": "2026-04-21T03-53-53_gpt-5_threat_stage1",
+    "timestamp": "2026-04-21T03-53-53",
+    "model": "gpt-5",
+    "prompt": "threat_stage1",
+    "total_tokens": 891362
+  },
+  {
+    "run_dir": "2026-04-21T03-53-43_gpt-5-mini_threat_stage1",
+    "timestamp": "2026-04-21T03-53-43",
+    "model": "gpt-5-mini",
+    "prompt": "threat_stage1",
+    "total_tokens": 885807
   }
 ]
