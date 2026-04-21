@@ -267,9 +267,16 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
         print(f"Using tokenizer from {tokenizer_name} (microsoft/deberta-v3-large "
               f"tokenizer has a conversion bug in this transformers version)")
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
-    model = AutoModelForSequenceClassification.from_pretrained(
-        cfg["model"], num_labels=cfg["num_labels"]
+    model, loading_info = AutoModelForSequenceClassification.from_pretrained(
+        cfg["model"], num_labels=cfg["num_labels"], output_loading_info=True
     )
+    # Tensors that were randomly initialized (not in the checkpoint) — we need
+    # to train these even when --freeze-backbone is on, since freezing random
+    # weights destroys whatever backbone signal feeds into them.
+    missing_keys = set(loading_info.get("missing_keys", []))
+    if missing_keys:
+        print(f"Newly initialized (will stay trainable even with --freeze-backbone): "
+              f"{sorted(missing_keys)}")
     if mode == "B":
         # The MoritzLaurer v2 checkpoint's 2-class head is shape-compatible,
         # so HF keeps its weights by default. For the ablation we want a
@@ -282,14 +289,17 @@ def run(mode: str, epochs: int, batch_size: int, lr: float,
     if freeze_backbone:
         n_frozen = 0
         for name, param in model.named_parameters():
-            if not name.startswith("classifier"):
-                param.requires_grad = False
-                n_frozen += 1
+            # Keep trainable: the classifier head + anything HF initialized
+            # from scratch (e.g., microsoft/deberta-v3-large's missing pooler).
+            if name.startswith("classifier") or name in missing_keys:
+                continue
+            param.requires_grad = False
+            n_frozen += 1
         trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
         total = sum(p.numel() for p in model.parameters())
         print(f"Backbone frozen: {n_frozen} tensors frozen, "
               f"{trainable:,} trainable / {total:,} total "
-              f"({100*trainable/total:.2f}% trainable)")
+              f"({100*trainable/total:.4f}% trainable)")
 
     model.to(device)
 
