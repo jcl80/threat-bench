@@ -183,23 +183,59 @@ def main():
     zs_best = best_sweep(zs_test, y_test)
     tf_best = best_sweep(tfidf_test, y_test)
 
-    print(f"\n{'='*64}")
-    print(f"{'Model':<22}  {'thr':>5}  {'P':>6}  {'R':>6}  {'F1':>6}")
-    print(f"{'-'*64}")
-    print(f"{'TF-IDF + LR':<22}  {tf_best['threshold']:>5.2f}  "
+    # --- Simple combination baselines ---
+    # Did the meta-LR actually add value, or would basic combination rules work?
+    avg_probs = (zs_test + tfidf_test) / 2.0
+    avg_best = best_sweep(avg_probs.tolist(), y_test.tolist())
+
+    zs_bin = (zs_test >= zs_best["threshold"]).astype(int)
+    tf_bin = (tfidf_test >= tf_best["threshold"]).astype(int)
+
+    def bin_metrics(pred, truth):
+        tp = int(((pred == 1) & (truth == 1)).sum())
+        fp = int(((pred == 1) & (truth == 0)).sum())
+        fn = int(((pred == 0) & (truth == 1)).sum())
+        tn = int(((pred == 0) & (truth == 0)).sum())
+        prec = tp / (tp + fp) if (tp + fp) else 0.0
+        rec = tp / (tp + fn) if (tp + fn) else 0.0
+        f1 = 2*prec*rec/(prec+rec) if (prec+rec) else 0.0
+        return {"threshold": None, "tp": tp, "fp": fp, "fn": fn, "tn": tn,
+                "precision": round(prec, 4), "recall": round(rec, 4),
+                "f1": round(f1, 4)}
+
+    or_pred = ((zs_bin + tf_bin) > 0).astype(int)
+    and_pred = ((zs_bin + tf_bin) == 2).astype(int)
+    or_metrics = bin_metrics(or_pred, y_test)
+    and_metrics = bin_metrics(and_pred, y_test)
+
+    print(f"\n{'='*72}")
+    print(f"{'Model':<24}  {'thr':>6}  {'P':>6}  {'R':>6}  {'F1':>6}")
+    print(f"{'-'*72}")
+    print(f"{'TF-IDF + LR alone':<24}  {tf_best['threshold']:>6.2f}  "
           f"{tf_best['precision']:>6.3f}  {tf_best['recall']:>6.3f}  "
           f"{tf_best['f1']:>6.3f}")
-    print(f"{'Zero-shot NLI':<22}  {zs_best['threshold']:>5.2f}  "
+    print(f"{'Zero-shot NLI alone':<24}  {zs_best['threshold']:>6.2f}  "
           f"{zs_best['precision']:>6.3f}  {zs_best['recall']:>6.3f}  "
           f"{zs_best['f1']:>6.3f}")
-    print(f"{'Stacked ensemble':<22}  {m_best['threshold']:>5.2f}  "
+    print(f"{'Simple average':<24}  {avg_best['threshold']:>6.2f}  "
+          f"{avg_best['precision']:>6.3f}  {avg_best['recall']:>6.3f}  "
+          f"{avg_best['f1']:>6.3f}")
+    print(f"{'OR rule (both thrs)':<24}  {'-':>6}  "
+          f"{or_metrics['precision']:>6.3f}  {or_metrics['recall']:>6.3f}  "
+          f"{or_metrics['f1']:>6.3f}")
+    print(f"{'AND rule (both thrs)':<24}  {'-':>6}  "
+          f"{and_metrics['precision']:>6.3f}  {and_metrics['recall']:>6.3f}  "
+          f"{and_metrics['f1']:>6.3f}")
+    print(f"{'Stacked meta-LR (best)':<24}  {m_best['threshold']:>6.2f}  "
           f"{m_best['precision']:>6.3f}  {m_best['recall']:>6.3f}  "
           f"{m_best['f1']:>6.3f}")
-    print(f"{'Stacked @ thr=0.5':<22}  {m_05['threshold']:>5.2f}  "
+    print(f"{'Stacked @ thr=0.5':<24}  {m_05['threshold']:>6.2f}  "
           f"{m_05['precision']:>6.3f}  {m_05['recall']:>6.3f}  "
           f"{m_05['f1']:>6.3f}")
     best_indiv = max(tf_best["f1"], zs_best["f1"])
-    print(f"\nEnsemble gain over best individual: {m_best['f1'] - best_indiv:+.4f} F1")
+    print(f"\nMeta-LR gain over best individual: {m_best['f1'] - best_indiv:+.4f} F1")
+    print(f"Meta-LR gain over simple average:  {m_best['f1'] - avg_best['f1']:+.4f} F1")
+    print(f"(If the second is ~0 or negative, a simple average would have worked.)")
 
     # --- Save ---
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H-%M-%S")

@@ -233,6 +233,23 @@ def main():
         json.dump(out, f, indent=2)
     print(f"\nReport saved to {out_path}")
 
+    # Save per-post ensemble probabilities so downstream scripts
+    # (operating_points.py, calibration plots) can reuse them.
+    ens_path = Path(args.holdout).parent / "ensemble_predictions.jsonl"
+    with open(ens_path, "w") as f:
+        for sid, zs_p, tf_p, ens_p, y in zip(
+            holdout_ids, zs_holdout.tolist(), tfidf_holdout.tolist(),
+            ens_holdout.tolist(), y_holdout.tolist(),
+        ):
+            f.write(json.dumps({
+                "snapshot_id": sid,
+                "label": int(y),
+                "zs_prob": round(float(zs_p), 6),
+                "tfidf_prob": round(float(tf_p), 6),
+                "ens_prob": round(float(ens_p), 6),
+            }) + "\n")
+    print(f"Per-post ensemble predictions saved to {ens_path}")
+
 
 if __name__ == "__main__":
     main()
